@@ -48,34 +48,43 @@
         body { background-color: #f8fafc; color: #334155; overflow-x: hidden; }
 
         /* --- SNAKE TIMELINE (DESKTOP) --- */
-        /* মূল ভার্টিকাল লাইন */
+        /* মূল সেন্ট্রাল লাইন (মেরুদণ্ড) */
         .snake-spine {
-            position: absolute; top: 0; bottom: 0; width: 4px; background: #e2e8f0; left: 50%; transform: translateX(-50%); z-index: 0;
-            display: none;
+            position: absolute; top: 0; bottom: 0; width: 4px; background: #cbd5e1; left: 50%; transform: translateX(-50%); z-index: 0;
+            display: none; /* ডিফল্ট হাইড (মোবাইলের জন্য) */
         }
         
-        /* কানেক্টর কার্ভ (Snake Curve) */
-        .snake-curve {
-            position: absolute; top: 50%; height: 2px; background: #cbd5e1; z-index: -1; width: 50px;
+        /* ডেস্কটপ কানেক্টর (বাঁকানো লাইন) */
+        .connector-path {
             display: none;
+            position: absolute;
+            top: 50%;
+            width: 50%;
+            height: 40px; /* বাঁকানোর উচ্চতা */
+            z-index: -1;
+            border-top: 3px solid #cbd5e1; /* কানেক্টিং লাইন */
         }
 
         @media (min-width: 768px) {
             .snake-spine { display: block; }
-            .snake-curve { display: block; }
             
-            /* বাম দিকের কার্ডের জন্য কার্ভ */
-            .left-card .snake-curve {
-                right: -66px; /* সেন্টারের দিকে */
-                width: 66px;
-                background: linear-gradient(to right, #cbd5e1, #d97706);
+            /* বাম দিকের কার্ডের কানেক্টর (সাপের মতো বাঁক) */
+            .left-card .connector-path {
+                display: block;
+                right: -50%; /* সেন্টারের দিকে */
+                border-top-left-radius: 40px; /* কার্ভ */
+                border-left: 3px solid transparent; 
+                transform: translateY(-20px); /* পজিশন এডজাস্টমেন্ট */
+                background: transparent;
             }
             
-            /* ডান দিকের কার্ডের জন্য কার্ভ */
-            .right-card .snake-curve {
-                left: -66px;
-                width: 66px;
-                background: linear-gradient(to left, #cbd5e1, #d97706);
+            /* ডান দিকের কার্ডের কানেক্টর */
+            .right-card .connector-path {
+                display: block;
+                left: -50%;
+                border-top-right-radius: 40px;
+                border-right: 3px solid transparent;
+                transform: translateY(-20px);
             }
         }
 
@@ -414,7 +423,7 @@
               stats: { "গোত্র": "বনু মুস্তালিক", "ফলাফল": "১০০ পরিবারের মুক্তি", "বিবাহ": "৬ষ্ঠ হিজরি" }, lessons: ["মহানুভবতা ও বন্দীদের মুক্তি।"], source: "আবু দাউদ" },
 
             { id: 40, year: "628", category: "family", icon: "fas fa-ring", title: "সফিয়া (রা.)", subtitle: "ইহুদি সর্দারের কন্যা", 
-              story: `<p class="drop-cap">খা</p>য়বার বিজয়ের পর ইহুদি সর্দার হুয়াই বিন আখতাবের কন্যা সফিয়া বন্দী হন। নবীজি তাঁকে ইসলাম গ্রহণের অথবা নিজ ধর্মে ফিরে যাওয়ার স্বাধীনতা দেন। তিনি ইসলাম গ্রহণ করে নবীজিকে বিয়ে করেন।`, 
+              story: `<p class="drop-cap">খা</p>য়বার বিজয়ের পর ইহুদি সর্দার হুয়াই বিন আখতাবের কন্যা সফিয়া বন্দী হন। নবীজি তাঁকে মুক্ত করে দেন এবং বিয়ের প্রস্তাব দেন। তিনি ইসলাম গ্রহণ করে নবীজিকে বিয়ে করেন।`, 
               stats: { "পিতা": "হুয়াই বিন আখতাব", "বংশ": "হারুন (আ.)", "বিবাহ": "৭ম হিজরি" }, lessons: ["শত্রুর কন্যার সম্মান রক্ষা।"], source: "বুখারী" },
 
             { id: 41, year: "628", category: "state", icon: "fas fa-envelope-open-text", title: "রাজাদের কাছে চিঠি", subtitle: "আন্তর্জাতিক দাওয়াত", 
