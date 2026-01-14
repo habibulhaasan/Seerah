@@ -98,12 +98,7 @@
                 transform: translateX(-50%);
             }
             
-            .snake-arrow-down {
-                position: absolute; bottom: 20%; color: #d97706; font-size: 1.5rem; opacity: 0.6; animation: flow-down 1.5s infinite;
-            }
-            .snake-turn-right .snake-arrow-down { right: -11px; }
-            .snake-turn-left .snake-arrow-down { left: -11px; }
-
+            /* তীরের এনিমেশন (হরাইজন্টাল) */
             .flow-arrow {
                 position: absolute; top: 50%; font-size: 1.5rem; color: #d97706; z-index: 5;
             }
@@ -158,13 +153,10 @@
     <div class="mobile-line"></div>
     <div class="mobile-fill" id="progress-line"></div>
 
-    <!-- নেভিগেশন বার (Mobile Optimized - Single Row) -->
+    <!-- নেভিগেশন বার -->
     <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div class="container mx-auto px-4 py-2 md:py-3">
-            <!-- Single Row Layout for Mobile -->
             <div class="flex flex-row items-center gap-2 md:gap-4">
-                
-                <!-- Logo -->
                 <div class="flex items-center gap-2 cursor-pointer shrink-0" onclick="window.scrollTo(0,0)">
                     <div class="w-8 h-8 bg-brand-base rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md"><i class="fas fa-kaaba"></i></div>
                     <div class="hidden sm:block">
@@ -172,14 +164,11 @@
                         <span class="text-[9px] text-brand-gold uppercase tracking-wider font-bold">এনসাইক্লোপিডিয়া</span>
                     </div>
                 </div>
-
-                <!-- Search & Filter (Compact on Mobile) -->
                 <div class="flex flex-1 items-center gap-2 justify-end">
                     <div class="relative w-full max-w-md">
                         <input type="text" id="search-input" placeholder="খুঁজুন..." class="w-full bg-gray-100 text-gray-700 text-xs md:text-sm rounded-full pl-8 md:pl-9 pr-3 py-1.5 md:py-2 border border-gray-200 focus:outline-none focus:border-brand-base transition shadow-inner">
                         <i class="fas fa-search absolute left-2.5 top-2 md:top-2.5 text-gray-400 text-xs"></i>
                     </div>
-                    
                     <div class="relative shrink-0">
                         <select id="filter-select" onchange="filterTimeline()" class="appearance-none bg-gray-100 text-gray-700 text-xs md:text-sm rounded-full pl-3 pr-7 py-1.5 md:py-2 border border-gray-200 focus:outline-none cursor-pointer font-bold w-full max-w-[100px] md:max-w-none">
                             <option value="all">সব</option>
@@ -200,53 +189,50 @@
     <!-- হেডার -->
     <header class="relative pt-20 md:pt-32 pb-8 md:pb-16 px-4 text-center z-10 bg-gradient-to-b from-orange-50 to-transparent">
         <div class="absolute inset-0 opacity-5 bg-pattern pointer-events-none"></div>
-        
         <div class="flex flex-col items-center justify-center mb-4 mt-4">
             <span class="text-brand-gold text-5xl md:text-7xl font-arabic drop-shadow-sm animate-float">مُحَمَّد</span>
             <span class="text-brand-gold text-lg md:text-2xl font-arabic mt-2 animate-float-delayed">صلى الله عليه وسلم</span>
         </div>
-        
-        <h1 class="text-2xl md:text-5xl font-bold font-serif mb-2 text-brand-dark">সংক্ষিপ্ত সীরাত</h1>
-        <p class="text-gray-600 mb-8 text-xs md:text-sm font-serif max-w-xl mx-auto">জন্ম থেকে ওফাত পর্যন্ত প্রতিটি ধাপের বিস্তারিত আখ্যান, যুদ্ধ, রাষ্ট্র পরিচালনা এবং পারিবারিক জীবনের এক অনন্য দলিল।</p>
+        <h1 class="text-2xl md:text-5xl font-bold font-serif mb-2 text-brand-dark">রাহমাতুল্লিল আলামিন</h1>
+        <p class="text-gray-600 mb-8 text-xs md:text-sm font-serif max-w-xl mx-auto">জন্ম থেকে ওফাত পর্যন্ত প্রতিটি ধাপের বিস্তারিত আখ্যান</p>
 
-        <!-- ড্যাশবোর্ড (Updated with Informative Text) -->
+        <!-- ড্যাশবোর্ড -->
         <div class="container mx-auto max-w-6xl px-2">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-left hover:-translate-y-1 transition duration-300">
                     <span class="text-[10px] md:text-xs uppercase text-gray-500 font-bold block mb-1">মক্কী জীবন (৫৩ বছর)</span>
-                    <span class="block text-sm font-serif text-brand-dark leading-tight">তাওহীদের ঘোষণা, অমানবিক নির্যাতন এবং হিজরতের প্রস্তুতি।</span>
+                    <span class="block text-sm font-serif text-brand-dark leading-tight">তাওহীদের ঘোষণা ও হিজরতের প্রস্তুতি।</span>
                     <div class="h-1 w-full bg-orange-100 mt-2 rounded-full overflow-hidden"><div class="h-full bg-brand-makkan w-[84%]"></div></div>
                 </div>
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-left hover:-translate-y-1 transition duration-300">
                     <span class="text-[10px] md:text-xs uppercase text-gray-500 font-bold block mb-1">মাদানী জীবন (১০ বছর)</span>
-                    <span class="block text-sm font-serif text-brand-dark leading-tight">রাষ্ট্র গঠন, জিহাদ, বিধানাবলী এবং ইসলামের বিজয়।</span>
+                    <span class="block text-sm font-serif text-brand-dark leading-tight">রাষ্ট্র গঠন, জিহাদ ও ইসলামের বিজয়।</span>
                     <div class="h-1 w-full bg-green-100 mt-2 rounded-full overflow-hidden"><div class="h-full bg-brand-madinan w-[16%]"></div></div>
                 </div>
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-left hover:-translate-y-1 transition duration-300">
                     <span class="text-[10px] md:text-xs uppercase text-gray-500 font-bold block mb-1">সামরিক অভিযান (২৭টি)</span>
-                    <span class="block text-sm font-serif text-brand-dark leading-tight">বদর, ওহুদ, খন্দক সহ ২৭টি গাজওয়া এবং অনেক সারিয়া।</span>
+                    <span class="block text-sm font-serif text-brand-dark leading-tight">বদর, ওহুদ, খন্দক সহ ২৭টি গাজওয়া।</span>
                     <div class="h-1 w-full bg-red-100 mt-2 rounded-full overflow-hidden"><div class="h-full bg-brand-battle w-[100%]"></div></div>
                 </div>
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-left hover:-translate-y-1 transition duration-300">
                     <span class="text-[10px] md:text-xs uppercase text-gray-500 font-bold block mb-1">২৩ বছরের ওহী</span>
-                    <span class="block text-sm font-serif text-brand-dark leading-tight">৬১০ থেকে ৬৩২ খ্রিস্টাব্দ পর্যন্ত পবিত্র কুরআন নাযিল।</span>
+                    <span class="block text-sm font-serif text-brand-dark leading-tight">৬১০ থেকে ৬৩২ খ্রিস্টাব্দ পর্যন্ত কুরআন নাযিল।</span>
                     <div class="h-1 w-full bg-blue-100 mt-2 rounded-full overflow-hidden"><div class="h-full bg-brand-state w-full"></div></div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- টাইমলাইন কন্টেইনার -->
-    <!-- Wider Max Width for cards on desktop -->
+    <!-- টাইমলাইন -->
     <main class="container mx-auto px-4 pb-32 relative z-10 max-w-[1600px]" id="timeline-feed"></main>
 
     <!-- ফুটার -->
     <footer class="bg-white border-t border-gray-200 py-8 relative z-10 text-center">
         <p class="text-brand-dark font-arabic text-xl mb-1">صلى الله عليه وسلم</p>
-        <p class="text-[10px] text-gray-400 font-mono">তথ্যসূত্র: আর-রাহিকুল মাখতুম, সিরাতে ইবনে হিশাম, সহীহ বুখারী</p>
+        <p class="text-[10px] text-gray-400 font-mono">তথ্যসূত্র: আর-রাহিকুল মাখতুম, সিরাতে ইবনে হিশাম</p>
     </footer>
 
-    <!-- মোডাল (পপ-আপ) -->
+    <!-- মোডাল -->
     <div id="modal-overlay" class="modal-overlay fixed inset-0 z-[100] bg-brand-dark/40 backdrop-blur-sm flex items-center justify-center p-2 md:p-4">
         <div class="modal-panel bg-paper w-full h-full md:h-auto md:max-h-[85vh] md:max-w-3xl md:rounded-xl shadow-2xl flex flex-col overflow-hidden relative border border-white">
             <div class="bg-white border-b border-gray-100 px-5 py-3 flex justify-between items-center sticky top-0 z-20 shadow-sm shrink-0">
@@ -297,7 +283,7 @@
             'wisdom': 'উপদেশ ও প্রজ্ঞা'
         };
 
-        // --- সম্পূর্ণ ও বিস্তারিত ডাটাবেস (৬০+ ইভেন্ট) ---
+        // --- সম্পূর্ণ ডাটাবেস (৭৫+ ইভেন্ট) ---
         const seerahDB = [
             // ১. বংশ ও জন্ম
             { id: 1, year: "545", category: "makkan", icon: "fas fa-water", title: "আব্দুল মুত্তালিব ও জমজম", subtitle: "হারানো কূয়োর পুনরুদ্ধার", 
@@ -351,210 +337,234 @@
               story: `<p class="drop-cap">৩</p> বছর গোপনে দাওয়াত দেন। আবু বকর, আলী, জায়েদ ও খাদিজা (রা.) প্রথম ইসলাম গ্রহণ করেন। সাহাবীরা আরকাম ইবনে আবুল আরকামের বাড়িতে গোপনে মিলিত হতেন।`, 
               stats: { "মেয়াদ": "৩ বছর", "কেন্দ্র": "দারুল আরকাম" }, lessons: ["কৌশল ও ধীরস্থিরতা।"], source: "আর-রাহিকুল মাখতুম" },
 
-            { id: 13, year: "613", category: "makkan", icon: "fas fa-bullhorn", title: "প্রকাশ্য দাওয়াত", subtitle: "সাফা পাহাড়ে ঘোষণা", 
+            { id: 13, year: "610", category: "makkan", icon: "fas fa-user-check", title: "আবু বকরের ইসলাম", subtitle: "সিদ্দিকে আকবর", 
+              story: `<p class="drop-cap">ন</p>বীজির ছোটবেলার বন্ধু আবু বকর (রা.) কোনো প্রশ্ন ছাড়াই ইসলাম গ্রহণ করেন। তিনি ছিলেন পুরুষদের মধ্যে প্রথম মুসলিম।`, 
+              stats: { "নাম": "আব্দুল্লাহ", "উপাধি": "সিদ্দিক", "পেশা": "ব্যবসায়ী" }, lessons: ["বন্ধুর প্রতি বিশ্বাস।"], source: "বুখারী" },
+
+            { id: 14, year: "610", category: "makkan", icon: "fas fa-child", title: "আলীর ইসলাম", subtitle: "প্রথম কিশোর মুসলিম", 
+              story: `<p class="drop-cap">১০</p> বছর বয়সে আলী (রা.) ইসলাম গ্রহণ করেন। তিনি নবীজির চাচাতো ভাই এবং তাঁর ঘরেই লালিত-পালিত হয়েছিলেন।`, 
+              stats: { "বয়স": "১০ বছর", "সম্পর্ক": "চাচাতো ভাই" }, lessons: ["শৈশব থেকেই সত্য গ্রহণ।"], source: "সিরাত" },
+
+            { id: 15, year: "611", category: "makkan", icon: "fas fa-sad-cry", title: "বিলালের নির্যাতন", subtitle: "আহাদ আহাদ", 
+              story: `<p class="drop-cap">উ</p>মাইয়া বিন খলফ বিলাল (রা.)-কে উত্তপ্ত মরুভূমিতে পাথর চাপা দিয়ে রাখত। তবুও তিনি বলতেন 'আহাদ আহাদ' (আল্লাহ এক)।`, 
+              stats: { "মনিব": "উমাইয়া", "মুক্তিদাতা": "আবু বকর (রা.)" }, lessons: ["ঈমানের পরীক্ষায় অটল থাকা।"], source: "ইবনে মাজাহ" },
+
+            { id: 16, year: "613", category: "makkan", icon: "fas fa-bullhorn", title: "প্রকাশ্য দাওয়াত", subtitle: "সাফা পাহাড়ে ঘোষণা", 
               story: `<p class="drop-cap">৩</p> বছর পর সাফা পাহাড়ে উঠে প্রকাশ্যে তাওহীদের ঘোষণা দেন। তিনি বলেন, "আমি যদি বলি পাহাড়ের পেছনে শত্রু আছে, তোমরা কি বিশ্বাস করবে?" সবাই বলল, "হ্যাঁ"। তখন তিনি তাদের আযাব সম্পর্কে সতর্ক করলেন। আবু লাহাব বিরোধিতা করে।`, 
               stats: { "স্থান": "সাফা পাহাড়", "বিরোধিতাকারী": "আবু লাহাব", "আয়াত": "নিকটাত্মীয়দের সতর্ক করুন" }, lessons: ["সত্য প্রকাশে কোনো ভয় বা আপস নেই।"], source: "সহীহ মুসলিম" },
 
-            { id: 14, year: "615", category: "makkan", icon: "fas fa-plane-departure", title: "হাবশায় হিজরত", subtitle: "নাজ্জাশীর দরবার", 
-              story: `<p class="drop-cap">নি</p>র্যাতন সইতে না পেরে নবীজির নির্দেশে একদল সাহাবী আবিসিনিয়ায় (বর্তমান ইথিওপিয়া) হিজরত করেন। সেখানে ন্যায়পরায়ণ খ্রিস্টান রাজা ছিলেন, নাম নাজ্জাশী। জাফর (রা.) তাঁর দরবারে ইসলামের সৌন্দর্য তুলে ধরলে রাজা কেঁদে ফেলেন এবং মুসলিমদের আশ্রয় দেন।`, 
+            { id: 17, year: "615", category: "makkan", icon: "fas fa-plane-departure", title: "হাবশায় হিজরত", subtitle: "নাজ্জাশীর দরবার", 
+              story: `<p class="drop-cap">নি</p>র্যাতন সইতে না পেরে নবীজির নির্দেশে একদল সাহাবী আবিসিনিয়ায় (বর্তমান ইথিওপিয়া) হিজরত করেন। সেখানে ন্যায়পরায়ণ রাজা নাজ্জাশী মুসলিমদের আশ্রয় দেন।`, 
               stats: { "দেশ": "আবিসিনিয়া", "রাজা": "নাজ্জাশী", "হিজরতকারী": "১২ জন পুরুষ, ৪ জন নারী (১ম দল)" }, lessons: ["দ্বীনের জন্য দেশত্যাগ ও আন্তঃধর্মীয় সংলাপের গুরুত্ব।"], source: "আর-রাহিকুল মাখতুম" },
 
-            { id: 15, year: "616", category: "makkan", icon: "fas fa-fist-raised", title: "হামজা ও উমরের ইসলাম গ্রহণ", subtitle: "ইসলামের শক্তি বৃদ্ধি", 
+            { id: 18, year: "615", category: "makkan", icon: "fas fa-skull", title: "সুমাইয়ার শাহাদাত", subtitle: "ইসলামের প্রথম শহীদ", 
+              story: `<p class="drop-cap">আ</p>বু জাহেল সুমাইয়া (রা.)-কে বর্শা বিদ্ধ করে নির্মমভাবে শহীদ করে। তিনি ছিলেন আম্মার (রা.)-এর মা এবং ইসলামের প্রথম শহীদ।`, 
+              stats: { "হত্যাকারী": "আবু জাহেল", "পরিবার": "ইয়াসির পরিবার" }, lessons: ["জান্নাতের বিনিময় সস্তা নয়।"], source: "ইবনে মাজাহ" },
+
+            { id: 19, year: "616", category: "makkan", icon: "fas fa-fist-raised", title: "হামজা ও উমরের ইসলাম গ্রহণ", subtitle: "ইসলামের শক্তি বৃদ্ধি", 
               story: `<p class="drop-cap">বী</p>র হামজা (রা.) এবং এরপর উমর ইবনুল খাত্তাব (রা.) ইসলাম গ্রহণ করেন। উমরের ইসলাম গ্রহণে মুসলিমরা এতটাই শক্তি পেল যে, তারা প্রথমবারের মতো প্রকাশ্যে কাবার সামনে সালাত আদায় শুরু করল।`, 
               stats: { "ব্যক্তিত্ব": "হামজা ও উমর (রা.)", "ফলাফল": "প্রকাশ্য ইবাদত শুরু" }, lessons: ["আল্লাহর সাহায্য অপ্রত্যাশিতভাবে আসে।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 16, year: "617", category: "makkan", icon: "fas fa-ban", title: "শি'আবে আবু তালিবে বয়কট", subtitle: "অমানবিক জীবন", 
+            { id: 20, year: "617", category: "makkan", icon: "fas fa-ban", title: "শি'আবে আবু তালিবে বয়কট", subtitle: "অমানবিক জীবন", 
               story: `<p class="drop-cap">কু</p>রাইশরা বনু হাশিম গোত্রকে বয়কট করে। ৩ বছর তারা শি'আবে আবু তালিব উপত্যকায় বন্দী জীবন কাটান। খাবারের অভাবে সাহাবীরা গাছের পাতা ও শুকনা চামড়া খেতে বাধ্য হন। শিশুদের কান্নায় মক্কার আকাশ ভারী হয়ে উঠত।`, 
               stats: { "মেয়াদ": "৩ বছর", "স্থান": "শি'আবে আবু তালিব", "শর্ত": "বিয়ে ও কেনাবেচা নিষিদ্ধ" }, lessons: ["ঈমানের পথে চরম ধৈর্যের পরীক্ষা।"], source: "আর-রাহিকুল মাখতুম" },
 
-            { id: 17, year: "617", category: "makkan", icon: "fas fa-moon", title: "চাঁদ দ্বিখণ্ডন (শাক্কুল কামার)", subtitle: "মক্কার অলৌকিক নিদর্শন", 
+            { id: 21, year: "617", category: "makkan", icon: "fas fa-moon", title: "চাঁদ দ্বিখণ্ডন (শাক্কুল কামার)", subtitle: "মক্কার অলৌকিক নিদর্শন", 
               story: `<p class="drop-cap">ম</p>ক্কার কাফেররা নবীজির কাছে কোনো অলৌকিক নিদর্শন দেখতে চাইল। নবীজি আল্লাহর কাছে দোয়া করলেন এবং ইশারায় চাঁদকে দ্বিখণ্ডিত করলেন। চাঁদের দুই টুকরো হেরা পাহাড়ের দুই পাশে দেখা গেল।`, 
               stats: { "স্থান": "মিনা/মক্কা", "সাক্ষী": "মক্কাবাসী ও বহু কাফেলা", "আয়াত": "সূরা কামার: ১-২" }, lessons: ["আল্লাহর ক্ষমতার নিদর্শন।"], source: "বুখারী" },
 
-            { id: 18, year: "619", category: "makkan", icon: "fas fa-heart-broken", title: "আমুল হুযন (দুঃখের বছর)", subtitle: "স্বজন হারানোর বেদনা", 
+            { id: 22, year: "619", category: "makkan", icon: "fas fa-heart-broken", title: "আমুল হুযন (দুঃখের বছর)", subtitle: "স্বজন হারানোর বেদনা", 
               story: `<p class="drop-cap">ব</p>য়কট শেষ হওয়ার কিছুদিন পরেই নবীজির চাচা আবু তালিব এবং প্রিয়তমা স্ত্রী খাদিজা (রা.) ইন্তেকাল করেন। নবীজি মক্কায় আশ্রয়হীন হয়ে পড়েন।`, 
               stats: { "বিয়োগ": "চাচা আবু তালিব ও স্ত্রী খাদিজা", "বছর": "১০ম নববী বর্ষ" }, lessons: ["একমাত্র আল্লাহর ওপর ভরসা রাখা।"], source: "সহীহ বুখারী" },
 
-            { id: 19, year: "619", category: "makkan", icon: "fas fa-sad-tear", title: "তায়েফ ট্র্যাজেডি", subtitle: "রক্তাক্ত নবী", 
+            { id: 23, year: "619", category: "makkan", icon: "fas fa-sad-tear", title: "তায়েফ ট্র্যাজেডি", subtitle: "রক্তাক্ত নবী", 
               story: `<p class="drop-cap">ম</p>ক্কায় নিরাশ হয়ে তিনি তায়েফে যান। কিন্তু তায়েফবাসীরা তাঁকে পাথর মেরে রক্তাক্ত করে। জিবরাঈল (আ.) পাহাড় দিয়ে তাদের ধ্বংস করার অনুমতি চাইলে দয়ার নবী বললেন, 'আমি আশা করি আল্লাহ তাদের বংশধরদের হেদায়েত দেবেন।'`, 
               stats: { "স্থান": "তায়েফ", "সঙ্গী": "জায়েদ বিন হারিসা", "দোয়া": "হেদায়েতের জন্য" }, lessons: ["প্রতিশোধ না নিয়ে ক্ষমা করা নবওয়ী চরিত্র।"], source: "সহীহ মুসলিম" },
 
-            { id: 20, year: "619", category: "makkan", icon: "fas fa-users", title: "জিনদের ইসলাম গ্রহণ", subtitle: "নাখলা উপত্যকা", 
+            { id: 24, year: "619", category: "makkan", icon: "fas fa-users", title: "জিনদের ইসলাম গ্রহণ", subtitle: "নাখলা উপত্যকা", 
               story: `<p class="drop-cap">তা</p>য়েফ থেকে ফেরার পথে নাখলা উপত্যকায় নবীজি ফজরের নামাজ পড়ছিলেন। তখন একদল জিন তাঁর কুরআন তিলাওয়াত শুনে মুগ্ধ হয় এবং ইসলাম গ্রহণ করে।`, 
               stats: { "স্থান": "নাখলা", "শ্রোতা": "নসীবীন এলাকার জিন", "সূরা": "সূরা জিন" }, lessons: ["কুরআনের প্রভাব জিনদের ওপরও।"], source: "তাফসীরে ইবনে কাসির" },
 
-            { id: 21, year: "620", category: "makkan", icon: "fas fa-rocket", title: "ইসরা ও মিরাজ", subtitle: "ঊর্ধ্বগমন", 
+            { id: 25, year: "620", category: "makkan", icon: "fas fa-rocket", title: "ইসরা ও মিরাজ", subtitle: "ঊর্ধ্বগমন", 
               story: `<p class="drop-cap">এ</p>ক রাতে জিবরাঈল (আ.) বোরাক নিয়ে আসেন। নবীজি মক্কা থেকে জেরুজালেম এবং সেখান থেকে সাত আসমান পাড়ি দিয়ে আল্লাহর সান্নিধ্যে পৌঁছান। এই রাতেই ৫ ওয়াক্ত সালাত ফরজ হয়।`, 
               stats: { "বাহন": "বোরাক", "উপহার": "৫ ওয়াক্ত সালাত", "স্থান": "বাইতুল মুকাদ্দাস ও আরশ" }, lessons: ["সালাত মুমিনের মিরাজ।"], source: "সূরা বনী ইসরাঈল" },
 
-            { id: 22, year: "620", category: "family", icon: "fas fa-ring", title: "সাওদা বিনতে জামআ (রা.)", subtitle: "দ্বিতীয় স্ত্রী", 
+            { id: 26, year: "620", category: "family", icon: "fas fa-ring", title: "সাওদা বিনতে জামআ (রা.)", subtitle: "দ্বিতীয় স্ত্রী", 
               story: `<p class="drop-cap">খ</p>াদিজা (রা.)-এর ইন্তেকালের পর নবীজি খুব নিঃসঙ্গ হয়ে পড়েন এবং ছোট মেয়েদের দেখাশোনার সমস্যা হয়। তখন তিনি সাওদা (রা.)-কে বিয়ে করেন। তিনি ছিলেন বয়স্ক, বিধবা এবং অত্যন্ত দয়ালু।`, 
               stats: { "বিবাহের সময়": "নবুওয়াতের ১০ম বছর", "অবস্থা": "বিধবা", "বৈশিষ্ট্য": "অত্যন্ত দানশীল" }, lessons: ["পরিবারের প্রয়োজনে বিয়ে।"], source: "সিরাতে ইবনে হিশাম" },
             
-            { id: 23, year: "621", category: "makkan", icon: "fas fa-handshake", title: "আকাবার ১ম শপথ", subtitle: "মদিনাবাসীর অঙ্গীকার", 
+            { id: 27, year: "621", category: "makkan", icon: "fas fa-handshake", title: "আকাবার ১ম শপথ", subtitle: "মদিনাবাসীর অঙ্গীকার", 
               story: `<p class="drop-cap">ম</p>দিনার ১২ জন লোক গোপনে ইসলাম গ্রহণ করে। তারা নবীজির কাছে অঙ্গীকার করে যে তারা আল্লাহর সাথে কাউকে শরিক করবে না।`, 
               stats: { "সংখ্যা": "১২ জন", "স্থান": "আকাবা" }, lessons: ["গোপনে শক্তির সঞ্চার।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 24, year: "622", category: "makkan", icon: "fas fa-users-cog", title: "আকাবার ২য় শপথ", subtitle: "হিজরতের প্রস্তুতি", 
+            { id: 28, year: "622", category: "makkan", icon: "fas fa-users-cog", title: "আকাবার ২য় শপথ", subtitle: "হিজরতের প্রস্তুতি", 
               story: `<p class="drop-cap">৭</p>৫ জন মদিনাবাসী নবীজিকে রক্ষার শপথ নেয়। তারা নবীজিকে মদিনায় হিজরত করার আমন্ত্রণ জানায় এবং নিজেদের জান-মাল দিয়ে তাঁকে রক্ষার ওয়াদা করে।`, 
               stats: { "সংখ্যা": "৭৫ জন", "ফলাফল": "মদিনায় হিজরতের সিদ্ধান্ত" }, lessons: ["আনুগত্য ও অঙ্গীকার রক্ষা।"], source: "সিরাতে ইবনে হিশাম" },
 
             // ৫. হিজরত ও মাদানী জীবন
-            { id: 25, year: "622", category: "madinan", icon: "fas fa-route", title: "ঐতিহাসিক হিজরত", subtitle: "মদিনায় রাষ্ট্র গঠন", 
+            { id: 29, year: "622", category: "madinan", icon: "fas fa-route", title: "ঐতিহাসিক হিজরত", subtitle: "মদিনায় রাষ্ট্র গঠন", 
               story: `<p class="drop-cap">হ</p>ত্যার ষড়যন্ত্র থেকে বাঁচতে এবং দ্বীন প্রতিষ্ঠার লক্ষ্যে আল্লাহর নির্দেশে হিজরত। আলী (রা.)-কে বিছানায় রেখে আবু বকর (রা.)-কে সাথী করে তিনি বের হলেন। সাওর গুহায় ৩ দিন আত্মগোপন করলেন। এরপর মদিনায় পৌঁছান।`, 
               stats: { "সঙ্গী": "আবু বকর (রা.)", "গুহা": "সাওর", "ফলাফল": "হিজরি সনের শুরু" }, lessons: ["সর্বোচ্চ ত্যাগ ও আল্লাহর ওপর তাওয়াক্কুল।"], source: "সূরা তাওবা" },
 
-            { id: 26, year: "622", category: "madinan", icon: "fas fa-mosque", title: "মসজিদে নববী নির্মাণ", subtitle: "ইসলামের কেন্দ্র", 
+            { id: 30, year: "622", category: "madinan", icon: "fas fa-mosque", title: "মসজিদে নববী নির্মাণ", subtitle: "ইসলামের কেন্দ্র", 
               story: `<p class="drop-cap">ম</p>দিনায় পৌঁছে নবীজি প্রথম যে কাজটি করলেন তা হলো মসজিদ নির্মাণ। তিনি নিজেও সাহাবীদের সাথে ইট ও পাথর বহন করেছেন। এটি ছিল ইবাদত, বিচার ও পরামর্শের কেন্দ্র।`, 
               stats: { "স্থান": "দুই এতিম বালকের জমি", "মূল্য পরিশোধ": "আবু বকর (রা.)" }, lessons: ["সমাজ গঠনে মসজিদের ভূমিকা অপরিসীম।"], source: "বুখারী" },
 
-            { id: 27, year: "623", category: "state", icon: "fas fa-scroll", title: "মদিনার সনদ", subtitle: "পৃথিবীর প্রথম লিখিত সংবিধান", 
+            { id: 31, year: "623", category: "state", icon: "fas fa-scroll", title: "মদিনার সনদ", subtitle: "পৃথিবীর প্রথম লিখিত সংবিধান", 
               story: `<p class="drop-cap">ম</p>দিনায় বসবাসরত ইহুদি, খ্রিস্টান ও মুসলিমদের মধ্যে শান্তি বজায় রাখার জন্য নবীজি (সা.) ঐতিহাসিক 'মদিনার সনদ' প্রণয়ন করেন। এতে ধর্মীয় স্বাধীনতা, পারস্পরিক নিরাপত্তা এবং মদিনার প্রতিরক্ষার বিষয়গুলো নিশ্চিত করা হয়।`, 
               stats: { "দলিল": "মদিনার সনদ", "ধারা": "৪৭টি", "উদ্দেশ্য": "শান্তি ও নিরাপত্তা" }, lessons: ["সংখ্যালঘুদের অধিকার রক্ষা ও রাষ্ট্র পরিচালনার মূলনীতি।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 28, year: "623", category: "personal", icon: "fas fa-hands-helping", title: "মুওয়াকাত (ভ্রাতৃত্ব বন্ধন)", subtitle: "নজিরবিহীন ত্যাগ", 
+            { id: 32, year: "623", category: "personal", icon: "fas fa-hands-helping", title: "মুওয়াকাত (ভ্রাতৃত্ব বন্ধন)", subtitle: "নজিরবিহীন ত্যাগ", 
               story: `<p class="drop-cap">ম</p>ক্কা থেকে আগত নিঃস্ব মুহাজিরদের সাথে মদিনার আনসারদের ভাই পাতিয়ে দেন। আনসাররা নিজেদের সম্পত্তি অর্ধেক করে মুহাজির ভাইদের দিয়ে দেন।`, 
               stats: { "সম্পর্ক": "আনসার ও মুহাজির", "নীতি": "ভ্রাতৃত্ব ও সাম্য" }, lessons: ["মুমিনরা একে অপরের ভাই।"], source: "বুখারী" },
 
             // ৬. যুদ্ধ ও অভিযান
-            { id: 29, year: "623", category: "battle", icon: "fas fa-shield-alt", title: "গাজওয়ায়ে ওয়াদ্দান", subtitle: "প্রথম সামরিক অভিযান", 
+            { id: 33, year: "623", category: "battle", icon: "fas fa-shield-alt", title: "গাজওয়ায়ে ওয়াদ্দান", subtitle: "প্রথম সামরিক অভিযান", 
               story: `<p class="drop-cap">ই</p>সলামের ইতিহাসে প্রথম গাজওয়া বা অভিযান যেখানে নবীজি সশরীরে উপস্থিত ছিলেন। কোনো যুদ্ধ হয়নি, বনু দামরাহ গোত্রের সাথে সন্ধি হয়।`, 
               stats: { "সাল": "২য় হিজরি, সফর মাস", "ফলাফল": "সন্ধি" }, lessons: ["শত্রুকে সতর্ক করা।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 30, year: "624", category: "madinan", icon: "fas fa-compass", title: "কিবলা পরিবর্তন", subtitle: "বাইতুল্লাহর দিকে ফেরা", 
+            { id: 34, year: "624", category: "madinan", icon: "fas fa-compass", title: "কিবলা পরিবর্তন", subtitle: "বাইতুল্লাহর দিকে ফেরা", 
               story: `<p class="drop-cap">সা</p>লাতের মাঝখানে জেরুজালেম থেকে কাবার দিকে কিবলা পরিবর্তনের নির্দেশ আসে।`, 
               stats: { "মসজিদ": "মসজিদে কিবলাতাইন", "তারিখ": "১৫ শাবান" }, lessons: ["আল্লাহর নির্দেশের তাৎক্ষণিক আনুগত্য।"], source: "সূরা বাকারা" },
 
-            { id: 31, year: "624", category: "battle", icon: "fas fa-star-half-alt", title: "বদর যুদ্ধ", subtitle: "ঐতিহাসিক বিজয়", 
+            { id: 35, year: "624", category: "battle", icon: "fas fa-star-half-alt", title: "বদর যুদ্ধ", subtitle: "ঐতিহাসিক বিজয়", 
               story: `<p class="drop-cap">৩</p>১৩ জন সাহাবী নিয়ে ১০০০ কাফেরের বিরুদ্ধে ঐতিহাসিক বিজয়। নবীজি আল্লাহর কাছে কেঁদে কেঁদে দোয়া করেছিলেন। আল্লাহ ৩০০০ ফেরেশতা পাঠিয়ে সাহায্য করেন। আবু জাহেল নিহত হয়।`, 
               stats: { "তারিখ": "১৭ রমজান, ২য় হিজরি", "মুসলিম": "৩১৩", "কাফের": "১০০০", "শহীদ": "১৪" }, lessons: ["সংখ্যা নয়, ঈমানী শক্তিই বিজয়ের মূল।"], source: "সূরা আনফাল" },
 
-            { id: 32, year: "624", category: "family", icon: "fas fa-heart", title: "আয়েশা (রা.)-এর সাথে সংসার", subtitle: "সবচেয়ে প্রিয়তমা স্ত্রী", 
-              story: `<p class="drop-cap">হিজ</p>রতের পর মদিনায় আয়েশা (রা.)-এর সাথে নবীজির সংসার জীবন শুরু হয়। তিনি ছিলেন একমাত্র কুমারী স্ত্রী। নবীজি তাঁকে 'হুমায়রা' (লালচে ফর্সা) ডাকতেন। তাঁর কোলে মাথা রেখেই নবীজি ইন্তেকাল করেন।`, 
+            { id: 36, year: "624", category: "family", icon: "fas fa-heart", title: "আয়েশা (রা.)-এর সাথে সংসার", subtitle: "সবচেয়ে প্রিয়তমা স্ত্রী", 
+              story: `<p class="drop-cap">হিজ</p>রতের পর মদিনায় আয়েশা (রা.)-এর সাথে নবীজির সংসার জীবন শুরু হয়। তিনি ছিলেন একমাত্র কুমারী স্ত্রী। নবীজি তাঁকে 'হুমায়রা' (লালচে ফর্সা) ডাকতেন। তাঁর কোলে মাথা রেখেই নবীজি ইন্তেকাল করেন। ইলম, ফিকহ এবং হাদিস বর্ণনায় তাঁর অবদান অপরিসীম।`, 
               stats: { "বিবাহ": "মক্কায়", "ঘরে তোলা": "মদিনায় (২য় হিজরি)", "পিতা": "আবু বকর (রা.)" }, lessons: ["স্ত্রীর সাথে বিনোদন ও শিক্ষা।"], source: "বুখারী" },
 
-            { id: 33, year: "624", category: "battle", icon: "fas fa-users-slash", title: "বনু কাইনুকা অভিযান", subtitle: "বিশ্বাসঘাতক ইহুদিদের বহিষ্কার", 
+            { id: 37, year: "624", category: "battle", icon: "fas fa-users-slash", title: "বনু কাইনুকা অভিযান", subtitle: "বিশ্বাসঘাতক ইহুদিদের বহিষ্কার", 
               story: `<p class="drop-cap">ব</p>দরের পর মদিনার ইহুদি গোত্র বনু কাইনুকা চুক্তি ভঙ্গ করে এবং এক মুসলিম নারীকে অপমান করে। নবীজি তাদের অবরোধ করেন এবং শেষে মদিনা থেকে বহিষ্কার করেন।`, 
               stats: { "গোত্র": "বনু কাইনুকা", "অপরাধ": "চুক্তিভঙ্গ ও শ্লীলতাহানি", "শাস্তি": "নির্বাসন" }, lessons: ["রাষ্ট্রের নিরাপত্তা ও নারীর সম্মান রক্ষা।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 34, year: "625", category: "family", icon: "fas fa-ring", title: "হাফসা বিনতে উমর (রা.)", subtitle: "উমরের কন্যা", 
-              story: `<p class="drop-cap">ব</p>দর যুদ্ধে স্বামী খুমাইস (রা.) শহীদ হওয়ার পর হাফসা (রা.) বিধবা হন। উমর (রা.) তাঁর বিয়ে নিয়ে চিন্তিত ছিলেন। নবীজি তাঁকে বিয়ে করে উমর (রা.)-এর সম্মান বৃদ্ধি করেন।`, 
+            { id: 38, year: "625", category: "family", icon: "fas fa-ring", title: "হাফসা বিনতে উমর (রা.)", subtitle: "উমরের কন্যা", 
+              story: `<p class="drop-cap">ব</p>দর যুদ্ধে স্বামী খুমাইস (রা.) শহীদ হওয়ার পর হাফসা (রা.) বিধবা হন। উমর (রা.) তাঁর বিয়ে নিয়ে চিন্তিত ছিলেন। তিনি আবু বকর ও উসমান (রা.)-কে প্রস্তাব দেন, কিন্তু তাঁরা রাজি হননি। নবীজি তাঁকে বিয়ে করে উমর (রা.)-এর সম্মান বৃদ্ধি করেন। তিনি ছিলেন 'সায়্যামা' (অধিক রোজা পালনকারী) ও 'কাওয়ামা' (অধিক রাত জাগরণকারী)।`, 
               stats: { "পিতা": "উমর (রা.)", "বৈশিষ্ট্য": "সায়্যামা ও কাওয়ামা", "বিবাহ": "৩য় হিজরি" }, lessons: ["শহীদ পরিবারের পাশে দাঁড়ানো।"], source: "ইবনে মাজাহ" },
 
-            { id: 35, year: "625", category: "battle", icon: "fas fa-mountain", title: "ওহুদ যুদ্ধ", subtitle: "বিপর্যয় ও শিক্ষা", 
+            { id: 39, year: "625", category: "battle", icon: "fas fa-mountain", title: "ওহুদ যুদ্ধ", subtitle: "বিপর্যয় ও শিক্ষা", 
               story: `<p class="drop-cap">তী</p>রন্দাজদের ভুলে বিজয়ের দ্বারপ্রান্ত থেকে যুদ্ধের মোড় ঘুরে যায়। নবীজির দাঁত শহীদ হয় এবং বীর হামজা (রা.) শাহাদাত বরণ করেন।`, 
               stats: { "শহীদ": "৭০ জন", "নেতা (বিপক্ষ)": "খালিদ বিন ওয়ালিদ" }, lessons: ["নেতার আদেশ অমান্য করলে বিপর্যয় অনিবার্য।"], source: "সূরা আল-ইমরান" },
 
-            { id: 36, year: "625", category: "battle", icon: "fas fa-flag-checkered", title: "হামরাউল আসাদ অভিযান", subtitle: "সাহসের প্রদর্শন", 
+            { id: 40, year: "625", category: "battle", icon: "fas fa-flag-checkered", title: "হামরাউল আসাদ অভিযান", subtitle: "সাহসের প্রদর্শন", 
               story: `<p class="drop-cap">ও</p>হুদ যুদ্ধের পরদিনই আহত শরীর নিয়ে নবীজি শত্রুদের পিছু ধাওয়া করার নির্দেশ দেন, যাতে কুরাইশরা মদিনায় আক্রমণের সাহস না পায়। মুসলিমদের এই মনোবলে শত্রুরা পালিয়ে যায়।`, 
               stats: { "সময়": "উহুদের পরদিন", "কৌশল": "শত্রুকে ভয় দেখানো" }, lessons: ["পরাজয়ে দমে না গিয়ে ঘুরে দাঁড়ানো।"], source: "সূরা আল-ইমরান" },
 
-            { id: 37, year: "625", category: "battle", icon: "fas fa-dungeon", title: "বনু নাজির অভিযান", subtitle: "হত্যার ষড়যন্ত্র", 
+            { id: 41, year: "625", category: "battle", icon: "fas fa-dungeon", title: "বনু নাজির অভিযান", subtitle: "হত্যার ষড়যন্ত্র", 
               story: `<p class="drop-cap">ই</p>হুদি গোত্র বনু নাজির নবীজিকে পাথর মেরে হত্যার ষড়যন্ত্র করে। জিবরাঈল (আ.) নবীজিকে জানিয়ে দেন। ফলে তাদেরও মদিনা থেকে বহিষ্কার করা হয়।`, 
               stats: { "গোত্র": "বনু নাজির", "অপরাধ": "হত্যার চেষ্টা", "শাস্তি": "খায়বারে নির্বাসন" }, lessons: ["বিশ্বাসঘাতকদের ক্ষমা নেই।"], source: "সূরা হাশর" },
 
-            { id: 38, year: "626", category: "family", icon: "fas fa-ring", title: "জয়নব বিনতে খুজাইমা (রা.)", subtitle: "উম্মুল মাসাকিন", 
-              story: `<p class="drop-cap">তি</p>নি ছিলেন অত্যন্ত দানশীল, তাই জাহেলি যুগেই তাঁকে 'উম্মুল মাসাকিন' (গরিবদের মা) বলা হতো। উহুদ যুদ্ধে স্বামী শহীদ হওয়ার পর নবীজি তাঁকে বিয়ে করেন। বিয়ের মাত্র ৩-৮ মাস পর তিনি ইন্তেকাল করেন।`, 
+            { id: 42, year: "626", category: "family", icon: "fas fa-ring", title: "জয়নব বিনতে খুজাইমা (রা.)", subtitle: "উম্মুল মাসাকিন", 
+              story: `<p class="drop-cap">তি</p>নি ছিলেন অত্যন্ত দানশীল, তাই জাহেলি যুগেই তাঁকে 'উম্মুল মাসাকিন' (গরিবদের মা) বলা হতো। উহুদ যুদ্ধে স্বামী শহীদ হওয়ার পর নবীজি তাঁকে বিয়ে করেন। বিয়ের মাত্র ৩-৮ মাস পর তিনি ইন্তেকাল করেন। খাদিজা (রা.)-এর পর তিনিই একমাত্র স্ত্রী যিনি নবীজির জীবদ্দশায় মারা যান।`, 
               stats: { "উপাধি": "উম্মুল মাসাকিন", "বিবাহকাল": "মাত্র কয়েক মাস" }, lessons: ["গরিবদের প্রতি দয়া।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 39, year: "626", category: "family", icon: "fas fa-ring", title: "উম্মে সালামা (রা.)", subtitle: "ধৈর্যশীলা ও বুদ্ধিমতী", 
+            { id: 43, year: "626", category: "family", icon: "fas fa-ring", title: "উম্মে সালামা (রা.)", subtitle: "ধৈর্যশীলা ও বুদ্ধিমতী", 
               story: `<p class="drop-cap">উ</p>হুদ যুদ্ধে স্বামী আবু সালামা মারাত্মক আহত হয়ে শহীদ হন। তিনি ভেঙে পড়লে নবীজি তাঁকে দোয়া শিখিয়ে দেন এবং পরে নিজেই বিয়ের প্রস্তাব দেন। তিনি ছিলেন অত্যন্ত বুদ্ধিমতী; হুদায়বিয়ার সন্ধির সময় সাহাবীরা যখন হতাশ হয়ে পড়েছিলেন, তখন তাঁর পরামর্শেই নবীজি কোরবানি করে পরিস্থিতি শান্ত করেন।`, 
               stats: { "পূর্ব নাম": "হিন্দ", "বিবাহ": "৪র্থ হিজরি", "বৈশিষ্ট্য": "বুদ্ধিমতী ও পরামর্শদাতা" }, lessons: ["নারীর পরামর্শের গুরুত্ব।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 40, year: "626", category: "battle", icon: "fas fa-wind", title: "গাজওয়ায়ে জাতুর রিকা", subtitle: "সালাতুল খাউফ", 
+            { id: 44, year: "626", category: "battle", icon: "fas fa-wind", title: "গাজওয়ায়ে জাতুর রিকা", subtitle: "সালাতুল খাউফ", 
               story: `<p class="drop-cap">ন</p>জদ এলাকায় গাতফান গোত্রের বিরুদ্ধে অভিযান। এখানেই প্রথম ভয়ের নামাজ (সালাতুল খাউফ) পড়া হয়।`, 
               stats: { "নতুন বিধান": "সালাতুল খাউফ", "ফলাফল": "শত্রুরা পলায়ন করে" }, lessons: ["যুদ্ধের ময়দানেও সালাত।"], source: "সহীহ বুখারী" },
 
-            { id: 41, year: "627", category: "battle", icon: "fas fa-dungeon", title: "খন্দক যুদ্ধ", subtitle: "পরিখা খনন কৌশল", 
-              story: `<p class="drop-cap">১০</p>,০০০ সৈন্য মদিনা ঘেরাও করে। সালমান ফারসি (রা.)-এর পরামর্শে মদিনার চারপাশে পরিখা খনন করা হয়। শত্রুরা এটি পার হতে না পেরে এবং ঝড়ের কবলে পড়ে পালিয়ে যায়।`, 
+            { id: 45, year: "627", category: "battle", icon: "fas fa-dungeon", title: "খন্দক যুদ্ধ", subtitle: "পরিখা খনন কৌশল", 
+              story: `<p class="drop-cap">১</p>০,০০০ সৈন্য মদিনা ঘেরাও করে। সালমান ফারসি (রা.)-এর পরামর্শে মদিনার চারপাশে পরিখা খনন করা হয়। শত্রুরা এটি পার হতে না পেরে এবং ঝড়ের কবলে পড়ে পালিয়ে যায়।`, 
               stats: { "পরামর্শক": "সালমান ফারসি (রা.)", "স্থায়িত্ব": "১ মাস" }, lessons: ["যুদ্ধে কৌশল ও পরামর্শ (শূরা) গ্রহণ করা জরুরি।"], source: "সূরা আহযাব" },
 
-            { id: 42, year: "627", category: "battle", icon: "fas fa-gavel", title: "বনু কুরাইজা অভিযান", subtitle: "চরম বিশ্বাসঘাতকতা", 
+            { id: 46, year: "627", category: "battle", icon: "fas fa-gavel", title: "বনু কুরাইজা অভিযান", subtitle: "চরম বিশ্বাসঘাতকতা", 
               story: `<p class="drop-cap">খ</p>ন্দক যুদ্ধের কঠিন সময়ে বনু কুরাইজা চুক্তি ভঙ্গ করে পেছন থেকে আক্রমণের চেষ্টা করে। সা'দ বিন মুয়াজ (রা.)-এর ফয়সালা অনুযায়ী তাদের যোদ্ধাদের মৃত্যুদণ্ড দেওয়া হয়।`, 
               stats: { "বিচারক": "সা'দ বিন মুয়াজ (রা.)", "অপরাধ": "রাষ্ট্রদ্রোহিতা" }, lessons: ["বিশ্বাসঘাতকতার কঠিন শাস্তি।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 43, year: "627", category: "family", icon: "fas fa-ring", title: "জয়নব বিনতে জাহশ (রা.)", subtitle: "আল্লাহর নির্দেশে বিবাহ", 
+            { id: 47, year: "627", category: "family", icon: "fas fa-ring", title: "জয়নব বিনতে জাহশ (রা.)", subtitle: "আল্লাহর নির্দেশে বিবাহ", 
               story: `<p class="drop-cap">এ</p>ই বিবাহটি ছিল আরবের এক কঠিন কুসংস্কার ভাঙার জন্য। পালক পুত্রের তালাকপ্রাপ্তা স্ত্রীকে বিয়ে করা জাহেলি যুগে নিষিদ্ধ ছিল। আল্লাহ সেই প্রথা ভাঙার জন্য ওহীর মাধ্যমে নবীজিকে জায়েদ বিন হারিসার সাবেক স্ত্রী জয়নব (রা.)-এর সাথে বিয়ে দেন।`, 
               stats: { "বিবাহ": "৫ম হিজরি", "আয়াত": "সূরা আহযাব: ৩৭", "বৈশিষ্ট্য": "আল্লাহ কর্তৃক বিবাহ" }, lessons: ["সামাজিক কুসংস্কার দূরীকরণ।"], source: "তাফসীরে ইবনে কাসির" },
 
-            { id: 44, year: "628", category: "state", icon: "fas fa-handshake", title: "হুদায়বিয়ার সন্ধি", subtitle: "কূটনৈতিক মহাবিজয়", 
+            { id: 48, year: "628", category: "state", icon: "fas fa-handshake", title: "হুদায়বিয়ার সন্ধি", subtitle: "কূটনৈতিক মহাবিজয়", 
               story: `<p class="drop-cap">১</p>০ বছরের শান্তি চুক্তি। শর্তগুলো বাহ্যত অপমানজনক মনে হলেও আল্লাহ একে 'ফাতহুম মুবিন' (সুস্পষ্ট বিজয়) ঘোষণা করেন। এর ফলে ইসলামের দাওয়াত ব্যাপকভাবে ছড়িয়ে পড়ে।`, 
               stats: { "স্থান": "হুদায়বিয়া", "ফলাফল": "ইসলামের প্রসার" }, lessons: ["আবেগের চেয়ে দূরদর্শী সিদ্ধান্ত বেশি সুফল বয়ে আনে।"], source: "সূরা ফাতহ" },
 
-            { id: 45, year: "628", category: "state", icon: "fas fa-users", title: "বাইআতে রিদওয়ান", subtitle: "গাছের নিচে শপথ", 
+            { id: 49, year: "628", category: "state", icon: "fas fa-users", title: "বাইআতে রিদওয়ান", subtitle: "গাছের নিচে শপথ", 
               story: `<p class="drop-cap">উ</p>সমান (রা.)-কে হত্যার গুজব ছড়িয়ে পড়লে নবীজি সাহাবীদের কাছ থেকে আমৃত্যু লড়াইয়ের শপথ নেন। আল্লাহ এই শপথকারীদের ওপর সন্তুষ্টির ঘোষণা দেন।`, 
               stats: { "স্থান": "হুদায়বিয়া (বাবলা গাছের নিচে)", "সংখ্যা": "১৪০০ জন" }, lessons: ["আনুগত্য ও সাহসিকতা।"], source: "সূরা ফাতহ" },
 
-            { id: 46, year: "628", category: "family", icon: "fas fa-ring", title: "জুওয়াইরিয়া (রা.)", subtitle: "বনু মুস্তালিকের মুক্তি", 
+            { id: 50, year: "628", category: "family", icon: "fas fa-ring", title: "জুওয়াইরিয়া (রা.)", subtitle: "বনু মুস্তালিকের মুক্তি", 
               story: `<p class="drop-cap">ব</p>নু মুস্তালিক যুদ্ধে তিনি বন্দী হন। তিনি ছিলেন গোত্রপতির মেয়ে। নবীজি তাঁকে বিয়ে করলে সাহাবীরা তাঁর সম্মানে ওই গোত্রের ১০০টি পরিবারকে দাসত্ব থেকে মুক্তি দিয়ে দেন। আয়েশা (রা.) বলেন, 'কোনো নারী তার গোত্রের জন্য জুওয়াইরিয়ার চেয়ে বেশি বরকতপূর্ণ ছিল না।'`, 
               stats: { "গোত্র": "বনু মুস্তালিক", "ফলাফল": "১০০ পরিবারের মুক্তি", "বিবাহ": "৬ষ্ঠ হিজরি" }, lessons: ["মহানুভবতা ও বন্দীদের মুক্তি।"], source: "আবু দাউদ" },
 
-            { id: 47, year: "628", category: "family", icon: "fas fa-ring", title: "সফিয়া (রা.)", subtitle: "ইহুদি সর্দারের কন্যা", 
+            { id: 51, year: "628", category: "family", icon: "fas fa-ring", title: "সফিয়া (রা.)", subtitle: "ইহুদি সর্দারের কন্যা", 
               story: `<p class="drop-cap">খা</p>য়বার বিজয়ের পর ইহুদি সর্দার হুয়াই বিন আখতাবের কন্যা সফিয়া বন্দী হন। নবীজি তাঁকে ইসলাম গ্রহণের অথবা নিজ ধর্মে ফিরে যাওয়ার স্বাধীনতা দেন। তিনি ইসলাম গ্রহণ করে নবীজিকে বিয়ে করেন।`, 
               stats: { "পিতা": "হুয়াই বিন আখতাব", "বংশ": "হারুন (আ.)", "বিবাহ": "৭ম হিজরি" }, lessons: ["শত্রুর কন্যার সম্মান রক্ষা।"], source: "বুখারী" },
 
-            { id: 48, year: "628", category: "state", icon: "fas fa-envelope-open-text", title: "রাজাদের কাছে চিঠি", subtitle: "আন্তর্জাতিক দাওয়াত", 
+            { id: 52, year: "628", category: "state", icon: "fas fa-envelope-open-text", title: "রাজাদের কাছে চিঠি", subtitle: "আন্তর্জাতিক দাওয়াত", 
               story: `<p class="drop-cap">ন</p>বীজি রোম সম্রাট হিরাক্লিয়াস, পারস্য সম্রাট কিসরা, মিসরের মুকাওকিস এবং অন্যান্য রাষ্ট্রপ্রধানদের কাছে ইসলামের দাওয়াত দিয়ে চিঠি পাঠান।`, 
               stats: { "প্রাপক": "রোম, পারস্য, মিসর, হাবশা", "সীলমোহর": "মুহাম্মদুর রাসুলুল্লাহ" }, lessons: ["ইসলাম একটি বিশ্বধর্ম।"], source: "সহীহ বুখারী" },
 
-            { id: 49, year: "629", category: "family", icon: "fas fa-ring", title: "উম্মে হাবিবা (রা.)", subtitle: "আবু সুফিয়ানের কন্যা", 
+            { id: 53, year: "629", category: "family", icon: "fas fa-ring", title: "উম্মে হাবিবা (রা.)", subtitle: "আবু সুফিয়ানের কন্যা", 
               story: `<p class="drop-cap">তি</p>নি হাবশায় হিজরত করেছিলেন, কিন্তু সেখানে তাঁর স্বামী খ্রিস্টান হয়ে মারা যায়। তিনি ইসলামে অটল থাকেন। মদিনায় তখনো তাঁর পিতা আবু সুফিয়ান ইসলামের ঘোর শত্রু। নবীজি হাবশার রাজা নাজ্জাশীর মাধ্যমে তাঁকে বিয়ের প্রস্তাব পাঠান এবং নাজ্জাশী নিজে মহরানা পরিশোধ করেন।`, 
               stats: { "পিতা": "আবু সুফিয়ান", "মহরানা": "৪০০ দিনার (নাজ্জাশী কর্তৃক)", "বিবাহ": "৭ম হিজরি" }, lessons: ["দূরবর্তী সাহাবীদের খবর নেওয়া।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 50, year: "629", category: "family", icon: "fas fa-ring", title: "মায়মুনা (রা.)", subtitle: "সর্বশেষ স্ত্রী", 
+            { id: 54, year: "629", category: "family", icon: "fas fa-ring", title: "মায়মুনা (রা.)", subtitle: "সর্বশেষ স্ত্রী", 
               story: `<p class="drop-cap">ও</p>মরাতুল কাজা পালন শেষে মক্কায় এই বিবাহ হয়। তিনি ছিলেন আব্বাস (রা.)-এর শ্যালিকা। তিনি নিজেকে নবীজির জন্য হেবা (দান) করেছিলেন।`, 
               stats: { "বিবাহ": "৭ম হিজরি", "স্থান": "সারিফ", "বৈশিষ্ট্য": "আত্মীয়তার সম্পর্ক রক্ষাকারী" }, lessons: ["আত্মীয়তার বন্ধন।"], source: "সহীহ মুসলিম" },
 
-            { id: 51, year: "629", category: "battle", icon: "fas fa-users", title: "মূতার যুদ্ধ", subtitle: "রোমানদের সাথে লড়াই", 
+            { id: 55, year: "629", category: "battle", icon: "fas fa-users", title: "মূতার যুদ্ধ", subtitle: "রোমানদের সাথে লড়াই", 
               story: `<p class="drop-cap">৩</p>০০০ মুসলিম ২ লক্ষ রোমান সৈন্যের মুখোমুখি হয়। খালিদ বিন ওয়ালিদ (রা.) অসাধারণ কৌশলে বাহিনী ফিরিয়ে আনেন। এই যুদ্ধে নবীজির পালক পুত্র জায়েদ, চাচাতো ভাই জাফর এবং কবি আব্দুল্লাহ ইবনে রাওয়াহা (রা.) শহীদ হন।`, 
               stats: { "সেনাপতি": "জায়েদ, জাফর, আব্দুল্লাহ (রা.)", "স্থান": "সিরিয়া সীমান্ত" }, lessons: ["কৌশলগত পিছু হটা পরাজয় নয়।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 52, year: "630", category: "battle", icon: "fas fa-flag", title: "মক্কা বিজয়", subtitle: "রক্তপাতহীন মহাবিজয়", 
+            { id: 56, year: "630", category: "battle", icon: "fas fa-flag", title: "মক্কা বিজয়", subtitle: "রক্তপাতহীন মহাবিজয়", 
               story: `<p class="drop-cap">১</p>০,০০০ সাহাবী নিয়ে নবীজি মক্কা জয় করেন। তিনি কাবার দরজায় দাঁড়িয়ে সাধারণ ক্ষমা ঘোষণা করেন: <strong>"যাও, তোমরা সবাই মুক্ত।"</strong>`, 
               stats: { "তারিখ": "২০ রমজান, ৮ম হিজরি", "মূর্তি ধ্বংস": "৩৬০টি", "ঘোষণা": "সাধারণ ক্ষমা" }, lessons: ["ক্ষমাই হলো প্রকৃত শক্তি।"], source: "সিরাতে ইবনে হিশাম" },
 
-            { id: 53, year: "630", category: "battle", icon: "fas fa-horse-head", title: "হুনাইন যুদ্ধ", subtitle: "সংখ্যার বড়াই", 
+            { id: 57, year: "630", category: "battle", icon: "fas fa-horse-head", title: "হুনাইন যুদ্ধ", subtitle: "সংখ্যার বড়াই", 
               story: `<p class="drop-cap">ম</p>ক্কা বিজয়ের পর সংখ্যার গর্ব করায় প্রথমে বিপর্যয় আসে। পরে আল্লাহ বিজয় দেন।`, 
               stats: { "সৈন্য": "১২,০০০", "শিক্ষা": "সংখ্যা নয়, আল্লাহই মূল" }, lessons: ["অহংকার পতনের মূল।"], source: "সূরা তাওবা" },
 
-            { id: 54, year: "630", category: "battle", icon: "fas fa-sun", title: "তাবুক অভিযান", subtitle: "কঠিনতম অভিযান", 
+            { id: 58, year: "630", category: "battle", icon: "fas fa-sun", title: "তাবুক অভিযান", subtitle: "কঠিনতম অভিযান", 
               story: `<p class="drop-cap">প্র</p>চণ্ড গরমে রোমানদের বিরুদ্ধে ৩০,০০০ সৈন্য নিয়ে অভিযান। কোনো যুদ্ধ ছাড়াই রোমানরা পিছু হটে।`, 
               stats: { "সৈন্য": "৩০,০০০", "ঋতু": "গ্রীষ্মকাল" }, lessons: ["কঠিন সময়েও জিহাদে অটল থাকা।"], source: "সূরা তাওবা" },
 
-            { id: 55, year: "631", category: "state", icon: "fas fa-user-check", title: "আবু বকর (রা.)-এর হজ্জ", subtitle: "হজ্জের আমীর", 
+            { id: 59, year: "630", category: "family", icon: "fas fa-child", title: "ইব্রাহিমের জন্ম", subtitle: "শেষ বয়সে সন্তান", 
+              story: `<p class="drop-cap">ন</p>বীজির দাসী মারিয়া কিবতিয়া (রা.)-এর গর্ভে পুত্র ইব্রাহিম জন্মগ্রহণ করেন। নবীজি অত্যন্ত আনন্দিত হন। কিন্তু মাত্র ১৮ মাস বয়সে ইব্রাহিম মারা যান। নবীজি কেঁদে বলেন, "চোখ অশ্রুসজল, হৃদয় ব্যথিত, কিন্তু আমরা তাই বলব যাতে আমাদের রব সন্তুষ্ট হন।"`, 
+              stats: { "মাতা": "মারিয়া কিবতিয়া", "মৃত্যু": "১৮ মাস বয়সে" }, lessons: ["আল্লাহর ফয়সালায় সন্তুষ্ট থাকা।"], source: "বুখারী" },
+
+            { id: 60, year: "631", category: "state", icon: "fas fa-user-check", title: "আবু বকর (রা.)-এর হজ্জ", subtitle: "হজ্জের আমীর", 
               story: `<p class="drop-cap">৯</p>ম হিজরিতে নবীজি আবু বকর (রা.)-কে হজ্জের আমীর হিসেবে মক্কায় পাঠান। আলী (রা.)-কে পাঠানো হয় সূরা তাওবার আয়াত পড়ে শোনানোর জন্য, যেখানে মুশরিকদের সাথে সম্পর্কচ্ছেদের ঘোষণা দেওয়া হয়।`, 
               stats: { "আমীর": "আবু বকর (রা.)", "ঘোষণা": "মুশরিকরা আর হজ্জ করতে পারবে না" }, lessons: ["শিরকমুক্ত ইবাদত।"], source: "বুখারী" },
 
             // CHARACTER & WISDOM
-            { id: 56, year: "ব্যক্তিগত", category: "character", icon: "fas fa-child", title: "শিশুদের সাথে ব্যবহার", subtitle: "মমতার সাগর", 
+            { id: 61, year: "ব্যক্তিগত", category: "character", icon: "fas fa-child", title: "শিশুদের সাথে ব্যবহার", subtitle: "মমতার সাগর", 
               story: `<p class="drop-cap">তি</p>নি শিশুদের দেখলে সালাম দিতেন। নাতি হাসান-হোসাইনকে পিঠে চড়াতেন। এক বেদুইন তা দেখে অবাক হলে তিনি বলেন, 'আল্লাহ তোমার অন্তর থেকে দয়া তুলে নিলে আমি কী করব?'`, 
               stats: { "শিক্ষা": "স্নেহ ও মমতা" }, lessons: ["শিশুদের সম্মান করা।"], source: "বুখারী" },
 
-            { id: 57, year: "ব্যক্তিগত", category: "character", icon: "fas fa-hands-helping", title: "অমুসলিমদের সাথে আচরণ", subtitle: "মানবসেবা", 
+            { id: 62, year: "ব্যক্তিগত", category: "character", icon: "fas fa-hands-helping", title: "অমুসলিমদের সাথে আচরণ", subtitle: "মানবসেবা", 
               story: `<p class="drop-cap">এ</p>ক ইহুদি ছেলে নবীজির খেদমত করত। সে অসুস্থ হলে নবীজি তাকে দেখতে যান এবং তার ইসলাম গ্রহণের উসিলা হন।`, 
               stats: { "ঘটনা": "রোগী দেখতে যাওয়া" }, lessons: ["অমুসলিমদের প্রতিও সদাচরণ।"], source: "বুখারী" },
 
-            { id: 58, year: "ব্যক্তিগত", category: "character", icon: "fas fa-smile-beam", title: "হাস্যরস: বৃদ্ধা ও জান্নাত", subtitle: "নবীজির রসবোধ", 
+            { id: 63, year: "ব্যক্তিগত", category: "character", icon: "fas fa-smile-beam", title: "হাস্যরস: বৃদ্ধা ও জান্নাত", subtitle: "নবীজির রসবোধ", 
               story: `<p class="drop-cap">এ</p>ক বৃদ্ধা নবীজির কাছে জান্নাতের দোয়া চাইলে তিনি কৌতুক করে বলেন, 'বৃদ্ধারা জান্নাতে যাবে না।' মহিলাটি কাঁদতে শুরু করলে তিনি হেসে বলেন, 'সবাই যুবক হয়ে জান্নাতে যাবে।'`, 
               stats: { "ঘটনা": "বৃদ্ধার জান্নাত", "শিক্ষা": "কৌতুক হতে হবে সত্য" }, lessons: ["নবীজি ছিলেন প্রফুল্ল চিত্তের।"], source: "শামায়েলে তিরমিযী" },
 
-            { id: 59, year: "ব্যক্তিগত", category: "character", icon: "fas fa-running", title: "দৌড় প্রতিযোগিতা", subtitle: "স্ত্রীর সাথে বিনোদন", 
+            { id: 64, year: "ব্যক্তিগত", category: "character", icon: "fas fa-running", title: "দৌড় প্রতিযোগিতা", subtitle: "স্ত্রীর সাথে বিনোদন", 
               story: `<p class="drop-cap">ন</p>বীজি তাঁর স্ত্রী আয়েশা (রা.)-এর সাথে দৌড় প্রতিযোগিতা করতেন। একবার আয়েশা (রা.) জিতে গেলেন। কিছুদিন পর আয়েশা (রা.) একটু মোটা হলে নবীজি জিতে গেলেন এবং হেসে বললেন, "এটা আগেরটার শোধ।"`, 
               stats: { "সঙ্গী": "আয়েশা (রা.)", "ঘটনা": "দৌড় প্রতিযোগিতা" }, lessons: ["স্ত্রীর সাথে বিনোদন সুন্নাহ।"], source: "আবু দাউদ" },
 
-            { id: 60, year: "ব্যক্তিগত", category: "character", icon: "fas fa-user-circle", title: "দৈহিক সৌন্দর্য", subtitle: "শামায়েলে তিরমিযী", 
+            { id: 65, year: "ব্যক্তিগত", category: "character", icon: "fas fa-user-circle", title: "দৈহিক সৌন্দর্য", subtitle: "শামায়েলে তিরমিযী", 
               story: `<p class="drop-cap">তি</p>নি ছিলেন উজ্জ্বল গৌরবর্ণের। তাঁর মুখমণ্ডল ছিল পূর্ণিমার চাঁদের মতো দীপ্তিময়। তিনি অধিক লম্বাও ছিলেন না, আবার খাটোও ছিলেন না। তাঁর ঘাম ছিল কস্তুরীর চেয়েও সুগন্ধিযুক্ত।`, 
               stats: { "গায়ের রঙ": "উজ্জ্বল ফর্সা", "চুল": "কানের লতি পর্যন্ত", "মোহর": "দুই কাঁধের মাঝে" }, lessons: ["সর্বোত্তম আকৃতি।"], source: "শামায়েলে তিরমিযী" },
 
-            { id: 61, year: "632", category: "madinan", icon: "fas fa-users-cog", title: "বিদায় হজ্জ", subtitle: "মানবতার সনদ", 
+            { id: 66, year: "632", category: "madinan", icon: "fas fa-users-cog", title: "বিদায় হজ্জ", subtitle: "মানবতার সনদ", 
               story: `<p class="drop-cap">আ</p>রাফাতের ময়দানে ১ লক্ষ সাহাবীর সামনে তিনি বিদায় হজ্জের ভাষণ দেন। তিনি বলেন, "মানুষের রক্ত ও সম্পদ পবিত্র। সুদ চিরতরে হারাম। নারীদের অধিকার আদায় করতে হবে। আরবের ওপর অনারবের কোনো শ্রেষ্ঠত্ব নেই।"`, 
               stats: { "উপস্থিতি": "১ লক্ষ ২৪ হাজার", "আয়াত": "আজ আমি তোমাদের দ্বীন পূর্ণ করলাম" }, lessons: ["মানবাধিকার ও সাম্যের শ্রেষ্ঠ দলিল।"], source: "সহীহ মুসলিম" },
 
-            { id: 62, year: "632", category: "state", icon: "fas fa-bullhorn", title: "গাদিরে খুমের ভাষণ", subtitle: "মদিনায় ফেরার পথে", 
+            { id: 67, year: "632", category: "state", icon: "fas fa-bullhorn", title: "গাদিরে খুমের ভাষণ", subtitle: "মদিনায় ফেরার পথে", 
               story: `<p class="drop-cap">বি</p>দায় হজ্জ থেকে ফেরার পথে গাদিরে খুম নামক স্থানে তিনি আলী (রা.)-এর মর্যাদা সম্পর্কে বলেন, "আমি যার মাওলা (বন্ধু/অভিভাবক), আলীও তার মাওলা।"`, 
               stats: { "স্থান": "গাদিরে খুম", "বিষয়": "আলী (রা.)-এর ফযিলত" }, lessons: ["সাহাবীদের প্রতি ভালোবাসা।"], source: "তিরমিযী" },
+            
+            { id: 68, year: "632", category: "madinan", icon: "fas fa-user-friends", title: "উসামার বাহিনী", subtitle: "শেষ নির্দেশ", 
+              story: `<p class="drop-cap">অ</p>সুস্থ অবস্থায় তিনি উসামা বিন জায়েদ (রা.)-এর নেতৃত্বে রোমানদের বিরুদ্ধে বাহিনী পাঠানোর নির্দেশ দেন। উসামা ছিলেন তরুণ, তবুও নবীজি তাঁকে সেনাপতি নিয়োগ করেন।`, 
+              stats: { "সেনাপতি": "উসামা (১৮ বছর)", "শত্রু": "রোমান" }, lessons: ["যোগ্যতার মূল্যায়ন।"], source: "সিরাত" },
 
-            { id: 63, year: "632", category: "madinan", icon: "fas fa-praying-hands", title: "ওফাত (ইন্তেকাল)", subtitle: "রফিকে আ'লার সন্ধানে", 
+            { id: 69, year: "632", category: "madinan", icon: "fas fa-praying-hands", title: "ওফাত (ইন্তেকাল)", subtitle: "রফিকে আ'লার সন্ধানে", 
               story: `<p class="drop-cap">১</p>২ই রবিউল আউয়াল, সোমবার। অসুস্থ অবস্থায় তিনি আয়েশা (রা.) এর কোলে মাথা রেখে ইন্তেকাল করেন। তাঁর শেষ কথা ছিল: <strong>"আল্লাহুম্মা আর-রফিক আল-আ'লা"</strong> (হে আল্লাহ! আমি পরম বন্ধুর সান্নিধ্য চাই)।`, 
               stats: { "বয়স": "৬৩ বছর", "স্থান": "মদিনা", "বার": "সোমবার" }, lessons: ["মৃত্যু অবধারিত। রেখে যাওয়া সুন্নাহই আমাদের পাথেয়।"], source: "বুখারী" }
         ];
@@ -566,15 +576,11 @@
 
         function renderTimeline(data = seerahDB) {
             timelineFeed.innerHTML = '';
-            
-            // --- DESKTOP SNAKE LAYOUT LOGIC (3 Cards per row) ---
             const chunkSize = 3; 
-            
+
             for (let i = 0; i < data.length; i += chunkSize) {
                 const chunk = data.slice(i, i + chunkSize);
-                const rowIndex = Math.floor(i / chunkSize);
-                const isLTR = rowIndex % 2 === 0;
-
+                const isLTR = (i / chunkSize) % 2 === 0; 
                 const rowDiv = document.createElement('div');
                 // Increased Gap for better arrow spacing
                 rowDiv.className = `relative flex flex-col lg:flex-row gap-6 lg:gap-12 mb-8 lg:mb-24 w-full ${!isLTR ? 'lg:flex-row-reverse' : ''} group ${isLTR ? 'snake-row-ltr' : 'snake-row-rtl'}`;
@@ -587,7 +593,6 @@
                     rowDiv.appendChild(connector);
                 }
 
-                // Render Cards
                 chunk.forEach((item, idx) => {
                     let borderColor = 'border-gray-200', iconColor = 'text-gray-500', tagText = categoryMap[item.category];
 
@@ -598,40 +603,39 @@
                     else if(item.category === 'character') { borderColor = 'border-brand-character'; iconColor = 'text-brand-character'; }
                     else if(item.category === 'state') { borderColor = 'border-brand-state'; iconColor = 'text-brand-state'; }
 
-                    // --- ARROW LOGIC ---
+                    // --- তীর চিহ্ন লজিক (সেন্টার গ্যাপে) ---
                     let arrowHtml = '';
                     if (idx < chunk.length - 1) { 
                         if (isLTR) {
                              arrowHtml = `
-                                <div class="hidden lg:flex flow-arrow absolute top-1/2 -translate-y-1/2 -right-6 z-0 text-brand-gold animate-flow-right text-xl">
+                                <div class="hidden lg:flex flow-arrow absolute top-1/2 -translate-y-1/2 -right-[1.5rem] transform translate-x-1/2 z-20 text-brand-gold animate-flow-right text-xl justify-center items-center w-8 h-8 rounded-full bg-transparent">
                                     <i class="fas fa-arrow-right"></i>
                                 </div>`;
                         } else {
                              arrowHtml = `
-                                <div class="hidden lg:flex flow-arrow absolute top-1/2 -translate-y-1/2 -left-6 z-0 text-brand-gold animate-flow-left text-xl">
+                                <div class="hidden lg:flex flow-arrow absolute top-1/2 -translate-y-1/2 -left-[1.5rem] transform -translate-x-1/2 z-20 text-brand-gold animate-flow-left text-xl justify-center items-center w-8 h-8 rounded-full bg-transparent">
                                     <i class="fas fa-arrow-left"></i>
                                 </div>`;
                         }
                     }
 
-                    // --- MOBILE ARROW LOGIC ---
+                    // মোবাইল অ্যারো (সব কার্ডের নিচে, শেষ কার্ড ছাড়া)
                     let mobileArrowHtml = '';
                     if ((i + idx) < data.length - 1) {
-                         mobileArrowHtml = `
-                            <div class="lg:hidden flex justify-center py-2 absolute -bottom-6 left-[calc(60px+50%-30px)] z-0 text-brand-gold animate-flow-down text-lg opacity-70">
-                                <i class="fas fa-arrow-down"></i>
-                            </div>`;
+                        mobileArrowHtml = `
+                        <div class="lg:hidden absolute -bottom-6 left-[20px] -translate-x-1/2 z-0 text-brand-gold animate-flow-down text-lg opacity-80">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>`;
                     }
 
-                    // Width adjusted for 3 cards (approx 33%)
                     const cardHtml = `
                     <div class="w-full lg:w-1/3 relative z-10 timeline-item" onclick="openModal(${item.id})">
-                        <!-- Mobile Connector -->
-                        <div class="lg:hidden absolute left-[20px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-2 border-brand-gold z-20 flex items-center justify-center shadow-sm">
+                        <!-- মোবাইল কানেক্টর -->
+                        <div class="lg:hidden absolute left-[20px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-2 border-brand-gold z-20 flex items-center justify-center shadow-sm transform -translate-x-1/2">
                            <div class="w-1.5 h-1.5 bg-brand-gold rounded-full"></div>
                         </div>
                         
-                        <!-- Desktop Arrow -->
+                        <!-- ডেস্কটপ অ্যারো -->
                         ${arrowHtml}
                         
                         <div class="timeline-card p-5 ml-[40px] lg:ml-0 rounded-xl shadow-sm border border-gray-100 border-l-4 ${borderColor} h-full flex flex-col justify-between relative">
@@ -651,13 +655,13 @@
                         ${mobileArrowHtml}
                     </div>`;
                     
-                    rowDiv.insertAdjacentHTML(!isLTR ? 'afterbegin' : 'beforeend', cardHtml);
+                    rowDiv.insertAdjacentHTML('beforeend', cardHtml);
                 });
-
                 timelineFeed.appendChild(rowDiv);
             }
         }
 
+        // --- অন্যান্য ফাংশন ---
         function filterTimeline() {
             const cat = filterSelect.value;
             const query = searchInput.value.toLowerCase();
