@@ -72,15 +72,18 @@
             }
             /* ১ থেকে ২, ৩ থেকে ৪ সারিতে নামার কার্ভ */
             .snake-turn-right {
-                right: 12.5%; 
+                right: 8.33%; /* কার্ডের মাঝ বরাবর (1/4 width card এর অর্ধেক approx 12.5% থেকে একটু সরালাম gap এর জন্য) */
+                /* Actually logic is: 4 cards = 25% each. Center of last card is at 12.5% from right. */
+                right: 12.5%;
                 top: 50%;
                 height: 150%; 
                 border-top: 4px solid #e2e8f0;
                 border-right: 4px solid #e2e8f0;
                 border-top-right-radius: 40px;
-                border-bottom-right-radius: 40px; /* S shape fix */
+                border-bottom-right-radius: 40px;
                 background: transparent;
-                width: 60px;
+                width: 80px;
+                transform: translateX(50%); /* Center alignment fix */
             }
             /* ২ থেকে ৩, ৪ থেকে ৫ সারিতে নামার কার্ভ */
             .snake-turn-left {
@@ -92,25 +95,51 @@
                 border-top-left-radius: 40px;
                 border-bottom-left-radius: 40px;
                 background: transparent;
-                width: 60px;
+                width: 80px;
+                transform: translateX(-50%);
             }
             
-            /* তীরের এনিমেশন */
+            /* তীরের এনিমেশন (ভার্টিকাল) */
+            .snake-arrow-down {
+                position: absolute;
+                bottom: 20%;
+                color: #d97706;
+                font-size: 1.5rem;
+                opacity: 0.6;
+                animation: flow-down 1.5s infinite;
+            }
+            .snake-turn-right .snake-arrow-down { right: -11px; }
+            .snake-turn-left .snake-arrow-down { left: -11px; }
+
+            /* তীরের এনিমেশন (হরাইজন্টাল) */
             .flow-arrow {
                 position: absolute;
                 top: 50%;
-                transform: translateY(-50%);
-                font-size: 1.2rem;
+                font-size: 1.5rem;
                 color: #d97706;
-                opacity: 0.5;
-                animation: flow 1.5s infinite;
-            }
-            @keyframes flow {
-                0% { opacity: 0.2; transform: translateY(-50%) translateX(-5px); }
-                50% { opacity: 1; transform: translateY(-50%) translateX(0); }
-                100% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
+                z-index: 5; /* কার্ডের উপরে না, তবে গ্যাপে */
             }
         }
+
+        /* অ্যানিমেশন কি-ফ্রেমস */
+        @keyframes flow-right {
+            0% { opacity: 0.3; transform: translateY(-50%) translateX(-5px); }
+            50% { opacity: 1; transform: translateY(-50%) translateX(5px); }
+            100% { opacity: 0.3; transform: translateY(-50%) translateX(-5px); }
+        }
+        @keyframes flow-left {
+            0% { opacity: 0.3; transform: translateY(-50%) translateX(5px); }
+            50% { opacity: 1; transform: translateY(-50%) translateX(-5px); }
+            100% { opacity: 0.3; transform: translateY(-50%) translateX(5px); }
+        }
+        @keyframes flow-down {
+            0% { opacity: 0.3; transform: translateY(-5px); }
+            50% { opacity: 1; transform: translateY(5px); }
+            100% { opacity: 0.3; transform: translateY(-5px); }
+        }
+
+        .animate-flow-right { animation: flow-right 1.5s infinite; }
+        .animate-flow-left { animation: flow-left 1.5s infinite; }
 
         /* কার্ড স্টাইল */
         .timeline-card { 
@@ -288,7 +317,7 @@
             'wisdom': 'উপদেশ ও প্রজ্ঞা'
         };
 
-        // --- সম্পূর্ণ ডাটাবেস (৬০+ ইভেন্ট) ---
+        // --- ডাটাবেস ---
         const seerahDB = [
             // PRE-PROPHETHOOD
             { id: 1, year: "545", category: "makkan", icon: "fas fa-water", title: "আব্দুল মুত্তালিব ও জমজম", subtitle: "হারানো কূয়োর পুনরুদ্ধার", 
@@ -553,7 +582,7 @@
                     connector.className = `snake-connector ${isLTR ? 'snake-turn-right' : 'snake-turn-left'}`;
                     
                     // Arrow inside connector
-                    connector.innerHTML = `<div class="absolute bottom-[-10px] ${isLTR ? 'left-[-15px]' : 'right-[-15px]'} text-brand-gold/40 text-2xl animate-pulse"><i class="fas fa-chevron-down"></i></div>`;
+                    connector.innerHTML = `<i class="fas fa-chevron-down snake-arrow-down"></i>`;
                     
                     rowDiv.appendChild(connector);
                 }
@@ -569,15 +598,27 @@
                     else if(item.category === 'character') { borderColor = 'border-brand-character'; iconColor = 'text-brand-character'; }
                     else if(item.category === 'state') { borderColor = 'border-brand-state'; iconColor = 'text-brand-state'; }
 
-                    // --- HORIZONTAL ARROW LOGIC ---
+                    // --- HORIZONTAL ARROW LOGIC (FIXED) ---
                     let arrowHtml = '';
                     if (idx < chunk.length - 1) { // Not the last card in row
-                        const arrowIcon = isLTR ? 'fa-arrow-right' : 'fa-arrow-left';
-                        const arrowPos = isLTR ? '-right-8' : '-left-8'; 
-                        arrowHtml = `
-                            <div class="hidden lg:flex flow-arrow ${arrowPos} z-0 text-brand-gold">
-                                <i class="fas ${arrowIcon}"></i>
-                            </div>`;
+                        // LTR row: Left to Right arrow (default)
+                        // RTL row: Right to Left arrow
+                        
+                        // Positioning adjustments: 
+                        // In LTR, arrow goes to the RIGHT of current card.
+                        // In RTL, arrow goes to the LEFT of current card.
+                        
+                        if (isLTR) {
+                             arrowHtml = `
+                                <div class="hidden lg:flex absolute top-1/2 -translate-y-1/2 right-[-2rem] z-0 text-brand-gold animate-flow-right text-xl">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>`;
+                        } else {
+                             arrowHtml = `
+                                <div class="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-[-2rem] z-0 text-brand-gold animate-flow-left text-xl">
+                                    <i class="fas fa-arrow-left"></i>
+                                </div>`;
+                        }
                     }
 
                     const cardHtml = `
