@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সীরাতুন্নবী (সা.) - আর রাহীকুল মাখতূম</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --secondary: #064e3b;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Era Section */
+        .era-section {
+            margin-bottom: 3rem;
+        }
+
+        .era-title {
+            background: white;
+            color: var(--secondary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Grid for Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card Style */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: #e5e7eb;
+        }
+
+        .card-content {
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .chapter-badge {
+            background-color: #ecfdf5;
+            color: var(--secondary);
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            width: fit-content;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+
+        @media (max-width: 640px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>আর রাহীকুল মাখতূম</h1>
+    <p>মহানবী (সা.)-এর জীবনী - সোর্স কোড এনালাইসিস</p>
+</header>
+
+<div class="container" id="app">
+    <div class="loading">ডাটা লোড হচ্ছে...</div>
+</div>
+
+<script>
+    async function loadData() {
+        const app = document.getElementById('app');
+        
+        try {
+            // Fetching the JSON file we created
+            const response = await fetch('seerah_data.json');
+            if (!response.ok) throw new Error("JSON ফাইল পাওয়া যায়নি!");
+            
+            const data = await response.json();
+            
+            app.innerHTML = ''; // Clear loading message
+
+            // Loop through each Era
+            data.eras.forEach(era => {
+                const eraSection = document.createElement('div');
+                eraSection.className = 'era-section';
+
+                // Era Title
+                const eraHeader = document.createElement('div');
+                eraHeader.className = 'era-title';
+                eraHeader.innerText = era.era_title;
+                eraSection.appendChild(eraHeader);
+
+                // Grid Container for chapters
+                const grid = document.createElement('div');
+                grid.className = 'cards-grid';
+
+                // Loop through chapters in this Era
+                era.chapters.forEach(chapter => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+
+                    // Fallback image if source is empty (though source has images)
+                    const imgSrc = chapter.image || 'https://via.placeholder.com/400x200?text=No+Image';
+
+                    card.innerHTML = `
+                        <img src="${imgSrc}" alt="${chapter.title}" class="card-image" loading="lazy">
+                        <div class="card-content">
+                            <span class="chapter-badge">অধ্যায়: ${chapter.id}</span>
+                            <h3 class="card-title">${chapter.title}</h3>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+
+                eraSection.appendChild(grid);
+                app.appendChild(eraSection);
+            });
+
+        } catch (error) {
+            app.innerHTML = `
+                <div style="text-align:center; color:red; padding:2rem;">
+                    <h3>ত্রুটি হয়েছে!</h3>
+                    <p>${error.message}</p>
+                    <p><small>দয়া করে নিশ্চিত করুন 'seerah_data.json' ফাইলটি সঠিক ফোল্ডারে আছে এবং আপনি লাইভ সার্ভার ব্যবহার করছেন।</small></p>
+                </div>
+            `;
+            console.error(error);
+        }
+    }
+
+    // Initialize
+    loadData();
+</script>
+
+</body>
+</html>
