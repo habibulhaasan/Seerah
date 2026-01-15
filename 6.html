@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সীরাতুন্নবী (সা.) - ভিজুয়াল বায়োগ্রাফি</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        seerah: {
+                            dark: '#0f172a',
+                            paper: '#fffbeb',
+                            gold: '#d97706',
+                            makkan: '#b45309',  // Amber/Desert for Struggle
+                            madinan: '#059669', // Emerald for Victory
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Hind Siliguri"', 'sans-serif'],
+                        serif: ['"Noto Serif Bengali"', 'serif'],
+                        arabic: ['"Amiri"', 'serif'],
+                    },
+                    backgroundImage: {
+                        'pattern': "url('https://www.transparenttextures.com/patterns/arabesque.png')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Connecting Path Line */
+        .journey-path {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            /* Gradient showing transition from Makkah (Amber) to Madinah (Green) */
+            background: linear-gradient(to bottom, 
+                #b45309 0%, 
+                #b45309 50%, 
+                #059669 50%, 
+                #059669 100%
+            );
+            z-index: 0;
+            opacity: 0.2;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .journey-path { left: 20px; }
+        }
+
+        /* Card Hover Effects */
+        .milestone-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .milestone-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Typography */
+        .drop-cap::first-letter {
+            font-size: 3.5rem;
+            float: left;
+            margin-right: 0.75rem;
+            margin-top: -0.5rem;
+            font-family: 'Amiri', serif;
+            font-weight: bold;
+        }
+        
+        /* Reader Modal Transition */
+        .reader-modal {
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reader-modal.active {
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-gray-800 font-sans">
+
+    <!-- HEADER / DASHBOARD -->
+    <header class="bg-seerah-dark text-white relative shadow-2xl z-20">
+        <div class="absolute inset-0 opacity-10 bg-pattern"></div>
+        <div class="container mx-auto px-4 py-8 relative z-10">
+            <!-- Title -->
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-700 pb-6 mb-6">
+                <div class="flex items-center gap-4 mb-4 md:mb-0">
+                    <div class="w-12 h-12 rounded-full bg-seerah-gold flex items-center justify-center text-seerah-dark font-bold text-2xl animate-pulse">
+                        <i class="fas fa-kaaba"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-serif font-bold">সীরাত আল-মানচিত্র</h1>
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">ভিজুয়াল জার্নি • জন্ম থেকে ওফাত</span>
+                    </div>
+                </div>
+                <!-- Legend -->
+                <div class="flex gap-4 text-sm font-bold bg-white/5 px-4 py-2 rounded-full">
+                    <span class="flex items-center gap-2 text-orange-400"><div class="w-2 h-2 rounded-full bg-orange-500"></div> মক্কী জীবন</span>
+                    <span class="flex items-center gap-2 text-emerald-400"><div class="w-2 h-2 rounded-full bg-emerald-500"></div> মাদানী জীবন</span>
+                </div>
+            </div>
+
+            <div class="text-center">
+                 <p class="text-gray-300 mb-2">"তোমাদের জন্য আল্লাহর রাসূলের জীবনেই রয়েছে উত্তম আদর্শ।" <span class="text-xs text-gray-500">(সূরা আহযাব: ২১)</span></p>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN JOURNEY MAP -->
+    <main class="relative py-16 bg-gray-50 min-h-screen overflow-hidden">
+        
+        <!-- Background Path Line -->
+        <div class="journey-path"></div>
+
+        <div class="container mx-auto px-4 relative max-w-5xl" id="journey-container">
+            <!-- Content injected via JS -->
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-seerah-dark text-gray-400 py-10 text-center border-t border-gray-800">
+        <div class="font-arabic text-2xl text-seerah-gold mb-2">صلى الله عليه وسلم</div>
+        <p class="text-sm">তথ্যসূত্র: আর-রাহিকুল মাখতুম, সিরাতে ইবনে হিশাম ও সহীহ বুখারী</p>
+    </footer>
+
+    <!-- READER MODAL (FULL SCREEN BOOK VIEW) -->
+    <div id="reader-modal" class="reader-modal fixed inset-0 z-50 bg-white flex flex-col h-full w-full">
+        <!-- Reader Toolbar -->
+        <div class="bg-seerah-paper border-b px-4 md:px-8 py-4 flex justify-between items-center shadow-sm shrink-0 z-10">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <button onclick="closeReader()" class="md:hidden text-gray-500"><i class="fas fa-arrow-left"></i></button>
+                <div>
+                    <span id="reader-year" class="text-[10px] md:text-xs font-bold text-seerah-gold uppercase tracking-widest block"></span>
+                    <h2 id="reader-title" class="text-lg md:text-xl font-serif font-bold text-gray-800 truncate max-w-[200px] md:max-w-none"></h2>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <!-- Font Size Controls -->
+                <div class="hidden md:flex bg-white rounded-full border px-2 py-1 items-center gap-2 shadow-sm">
+                    <button onclick="adjustFont(-1)" class="w-6 h-6 rounded-full hover:bg-gray-100 text-gray-500 text-xs"><i class="fas fa-minus"></i></button>
+                    <i class="fas fa-font text-gray-400 text-xs"></i>
+                    <button onclick="adjustFont(1)" class="w-6 h-6 rounded-full hover:bg-gray-100 text-gray-500 text-xs"><i class="fas fa-plus"></i></button>
+                </div>
+                <!-- Close Button -->
+                <button onclick="closeReader()" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 hover:bg-red-50 hover:text-red-600 transition flex items-center justify-center">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Reader Content Area -->
+        <div class="flex-1 overflow-y-auto custom-scroll bg-seerah-paper relative">
+            <div class="max-w-3xl mx-auto p-6 md:p-12 pb-20">
+                
+                <!-- Icon Header -->
+                <div class="flex justify-center mb-8">
+                    <div class="w-20 h-20 rounded-full bg-white border-4 border-double border-seerah-gold flex items-center justify-center text-4xl shadow-lg transition-transform hover:scale-110 duration-500">
+                        <i id="reader-icon" class=""></i>
+                    </div>
+                </div>
+
+                <!-- Main Story Text -->
+                <div id="reader-body" class="prose prose-lg md:prose-xl max-w-none font-serif text-gray-700 leading-loose text-justify">
+                    <!-- Dynamic Content -->
+                </div>
+
+                <!-- Lessons & Reference Footer -->
+                <div class="mt-12 pt-8 border-t-2 border-dashed border-gray-300/50">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-seerah-gold relative overflow-hidden">
+                        <div class="absolute right-0 top-0 opacity-5 text-6xl text-seerah-gold"><i class="fas fa-lightbulb"></i></div>
+                        <h4 class="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
+                            <span class="bg-seerah-gold text-white px-2 py-0.5 rounded text-xs">শিক্ষা</span>
+                        </h4>
+                        <p id="reader-lesson" class="text-gray-600 italic font-sans text-base"></p>
+                    </div>
+                    <div class="flex justify-between items-center mt-6">
+                         <span class="h-px bg-gray-300 flex-1"></span>
+                         <span id="reader-source" class="px-4 text-xs text-gray-400 font-mono"></span>
+                         <span class="h-px bg-gray-300 flex-1"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. FULL DATA SOURCE (14 MAJOR EVENTS) ---
+        const seerahData = [
+            // --- MAKKAN ERA ---
+            {
+                year: "570",
+                era: "makkan",
+                icon: "fas fa-star",
+                title: "ধরণীতে শুভাগমন",
+                subtitle: "আমুল ফিল ও অলৌকিক জন্ম",
+                short: "আইয়ামে জাহেলিয়াতের ঘোর অন্ধকারে মক্কার বুকে এক নূরের প্রদীপ জ্বলে উঠল।",
+                story: `<p class="drop-cap">ত</p>খন আরবের অবস্থা ছিল ভয়াবহ। মানুষ মূর্তিপূজা, জুয়া, হত্যা আর অন্যায় অবিচারে লিপ্ত ছিল। ঠিক সেই সময়ে, ১২ই রবিউল আউয়াল সোমবার সুবহে সাদিকের সময় মা আমিনার ঘর আলোকিত করে জন্মগ্রহণ করেন হযরত মুহাম্মদ (সা.)। <br><br> তাঁর জন্মের মাত্র ৫০ দিন আগে ইয়েমেনের বাদশা আবরাহা বিশাল হাতির বাহিনী নিয়ে কাবা শরীফ ধ্বংস করতে এসেছিল। মক্কাবাসী ভয়ে পাহাড়ে আশ্রয় নিয়েছিল। তখন আল্লাহ ঝাঁকে ঝাঁকে আবাবিল পাখি পাঠান। এই পাখিরা তাদের ঠোঁটে ও পায়ে ছোট ছোট পাথর বহন করছিল। তারা আবরাহার বাহিনীর ওপর পাথর নিক্ষেপ করলে বিশাল বাহিনী ধ্বংসস্তূপে পরিণত হয়। <br><br>জন্মের আগেই তিনি পিতাকে হারিয়েছিলেন। জন্মের পর দাদা আব্দুল মুত্তালিব তাঁকে কোলে নিয়ে কাবা ঘরে প্রবেশ করেন এবং নাম রাখেন 'মুহাম্মদ', যার অর্থ 'প্রশংসিত' (The Praised One)।`,
+                lesson: "আল্লাহ তাঁর পবিত্র ঘর এবং তাঁর প্রিয় হাবিবকে অলৌকিকভাবে রক্ষা করেন। জন্মের শুরু থেকেই তাঁর জীবন ছিল মোজেজায় পূর্ণ।",
+                source: "সূত্র: আর-রাহিকুল মাখতুম"
+            },
+            {
+                year: "575",
+                era: "makkan",
+                icon: "fas fa-heart",
+                title: "বক্ষ বিদীর্ণ (শাক্কুল সদর)",
+                subtitle: "হালিমা সাদিয়ার গৃহে অলৌকিক ঘটনা",
+                short: "মরুভূমিতে বনু সা'দ গোত্রে লালন-পালন ও ফেরেশতাদের আগমন।",
+                story: `<p class="drop-cap">আ</p>রবের সম্ভ্রান্ত প্রথা অনুযায়ী শিশু নবীজিকে লালন-পালনের জন্য বনু সা'দ গোত্রের হালিমা সাদিয়ার হাতে তুলে দেওয়া হয়। হালিমা বলেন, 'এই শিশুটি আমার ঘরে আসার পর থেকে আমার সংসারে অভাবনীয় বরকত নেমে আসে।' <br><br>চার বা পাঁচ বছর বয়সে তিনি যখন অন্য শিশুদের সাথে খেলছিলেন, তখন জিবরাঈল (আ.) মানুষের রূপে এসে তাঁকে শুইয়ে দেন। তাঁর বুক চিরে হৃৎপিণ্ড বের করেন এবং জমজমের পানি দিয়ে ধুয়ে শয়তানের অংশ (কালো রক্তপিণ্ড) ফেলে দেন। এরপর হৃৎপিণ্ড যথাস্থানে স্থাপন করে বুক জোড়া লাগিয়ে দেন। এই ঘটনায় ভয় পেয়ে হালিমা তাঁকে মক্কায় মায়ের কাছে ফেরত দিয়ে যান।`,
+                lesson: "নবুওয়াতের মহান দায়িত্বের জন্য আল্লাহ শিশুকাল থেকেই তাঁকে পবিত্র ও কলুষমুক্ত রেখেছিলেন।",
+                source: "সূত্র: সহীহ মুসলিম"
+            },
+            {
+                year: "595",
+                era: "makkan",
+                icon: "fas fa-ring",
+                title: "বিবাহ ও আল-আমিন",
+                subtitle: "খাদিজা (রা.) এর সাথে পবিত্র বন্ধন",
+                short: "মক্কার সবচেয়ে সত্যবাদী যুবক হিসেবে পরিচিতি লাভ ও প্রথম বিবাহ।",
+                story: `<p class="drop-cap">যৌ</p>বনে তিনি এতটাই সৎ ছিলেন যে মক্কাবাসী তাঁকে 'আল-আমিন' (বিশ্বাসী) এবং 'আস-সাদিক' (সত্যবাদী) উপাধি দিয়েছিল। তাঁর সততা ও ব্যবসায়িক দক্ষতায় মুগ্ধ হয়ে আরবের ধনাঢ্য নারী খাদিজা (রা.) বিবাহের প্রস্তাব পাঠান। <br><br>তখন নবীজির বয়স ছিল ২৫ এবং খাদিজার (রা.) বয়স ছিল ৪০। চাচা আবু তালিবের সম্মতিতে এই মোবারক বিবাহ সম্পন্ন হয়। খাদিজা (রা.) ছিলেন নবীজির সুখ-দুঃখের প্রথম সাথী। তিনি নিজের সমস্ত সম্পদ ইসলামের জন্য অকাতরে বিলিয়ে দিয়েছিলেন।`,
+                lesson: "পারিবারিক জীবনে সততা, বিশ্বস্ততা ও পারস্পরিক শ্রদ্ধাবোধই সুখের মূল চাবিকাঠি।",
+                source: "সূত্র: সিরাতে ইবনে হিশাম"
+            },
+            {
+                year: "610",
+                era: "makkan",
+                icon: "fas fa-book-quran",
+                title: "নবুওয়াত লাভ",
+                subtitle: "হেরা গুহা ও প্রথম ওহী",
+                short: "৪০ বছর বয়সে জিবরাঈল (আ.)-এর মাধ্যমে প্রথম ওহী লাভ।",
+                story: `<p class="drop-cap">ম</p>ক্কার কোলাহল ছেড়ে তিনি হেরা গুহায় নির্জনে ধ্যানে মগ্ন থাকতেন। ৬১০ খ্রিস্টাব্দের রমজান মাসে জিবরাঈল (আ.) আল্লাহর পক্ষ থেকে প্রথম ওহী নিয়ে আসেন। <br><br>জিবরাঈল (আ.) তাঁকে বললেন, <strong>'ইকরা'</strong> (পড়ুন)। তিনি উত্তর দিলেন, 'আমি পড়তে জানি না।' জিবরাঈল (আ.) তাঁকে বুকে চেপে ধরলেন এবং সূরা আলাকের প্রথম ৫ আয়াত পাঠ করালেন: "পাঠ করুন আপনার পালনকর্তার নামে যিনি সৃষ্টি করেছেন..."। এটিই ছিল কুরআনের প্রথম অবতরণ। ভয়ে কাঁপতে কাঁপতে তিনি ঘরে ফিরলেন এবং খাদিজা (রা.)-কে বললেন, "আমাকে চাদর দিয়ে ঢেকে দাও।"`,
+                lesson: "জ্ঞান অর্জন (ইকরা) হলো ইসলামের প্রথম নির্দেশ এবং সত্যের সন্ধান করা প্রতিটি মানুষের কর্তব্য।",
+                source: "সূত্র: সহীহ বুখারী"
+            },
+            {
+                year: "615",
+                era: "makkan",
+                icon: "fas fa-users-slash",
+                title: "প্রকাশ্য দাওয়াত ও নির্যাতন",
+                subtitle: "সাফা পাহাড়ে ঘোষণা ও সাহাবীদের কষ্ট",
+                short: "ইসলামের দাওয়াত প্রকাশ্যে দেওয়ায় কুরাইশদের অমানবিক নির্যাতন শুরু।",
+                story: `<p class="drop-cap">তি</p>ন বছর গোপন দাওয়াতের পর আল্লাহ নির্দেশ দিলেন প্রকাশ্যে দাওয়াত দেওয়ার। নবীজি সাফা পাহাড়ে উঠে মক্কাবাসীদের সমবেত করলেন এবং এক আল্লাহর ইবাদতের ডাক দিলেন। <br><br>এর পরেই শুরু হলো অবর্ণনীয় নির্যাতন। বিলাল (রা.)-কে উত্তপ্ত বালুতে পাথর চাপা দেওয়া হতো। সুমাইয়া (রা.)-কে নির্মমভাবে শহীদ করা হলো। নির্যাতন সহ্য করতে না পেরে নবীজির নির্দেশে একদল সাহাবী আবিসিনিয়ায় হিজরত করলেন। তবুও নবীজি সত্যের পথ থেকে এক চুলও নড়েননি।`,
+                lesson: "সত্যের পথে বাধা আসবেই, কিন্তু ধৈর্য ও ত্যাগের মাধ্যমেই তা মোকাবিলা করতে হয়।",
+                source: "সূত্র: আর-রাহিকুল মাখতুম"
+            },
+            {
+                year: "619",
+                era: "makkan",
+                icon: "fas fa-heart-broken",
+                title: "আমুল হুযন ও তায়েফ",
+                subtitle: "দুঃখের বছর ও তায়েফের মর্মান্তিক সফর",
+                short: "সবচেয়ে বড় দুই আশ্রয়দাতার বিদায় ও তায়েফবাসীর নিষ্ঠুরতা।",
+                story: `<p class="drop-cap">ন</p>বুওয়াতের দশম বছরে নবীজির চাচা আবু তালিব এবং প্রিয়তমা স্ত্রী খাদিজা (রা.) ইন্তেকাল করেন। এই বছরটিকে 'আমুল হুযন' বা দুঃখের বছর বলা হয়। <br><br>মক্কায় নিরাশ হয়ে তিনি তায়েফে যান। কিন্তু তায়েফ সর্দাররা তাঁকে অপমান করল এবং বখাটে ছেলেদের লেলিয়ে দিল। তারা পাথর মেরে নবীজির শরীর রক্তাক্ত করে দিল। জিবরাঈল (আ.) পাহাড় দিয়ে তাদের ধ্বংস করার অনুমতি চাইলেন। কিন্তু দয়ার নবী বললেন, "না, আমি আশা করি আল্লাহ তাদের বংশধরদের মধ্যে মুমিন সৃষ্টি করবেন।"`,
+                lesson: "প্রতিশোধ না নিয়ে ক্ষমা করা এবং মানুষের হেদায়েতের জন্য দোয়া করা নবওয়ী চরিত্র।",
+                source: "সূত্র: সহীহ বুখারী"
+            },
+            {
+                year: "620",
+                era: "makkan",
+                icon: "fas fa-rocket",
+                title: "ইসরা ও মিরাজ",
+                subtitle: "ঊর্ধ্বগমন ও নামায ফরজ",
+                short: "এক রাতে মক্কা থেকে বায়তুল মুকাদ্দাস ও সেখান থেকে আরশে আজিম ভ্রমণ।",
+                story: `<p class="drop-cap">চ</p>রম দুঃখের পর আল্লাহ তাঁর হাবিবকে সান্ত্বনা দিতে চাইলেন। এক রাতে জিবরাঈল (আ.) বোরাক নিয়ে এলেন। নবীজি মক্কা থেকে মুহূর্তের মধ্যে জেরুজালেমের বায়তুল মুকাদ্দাসে গেলেন এবং সেখানে নবীদের ইমামতি করলেন। <br><br>এরপর তিনি সাত আসমান পাড়ি দিয়ে সিদরাতুল মুনতাহায় আল্লাহর সান্নিধ্যে পৌঁছালেন। এই সফরেই আল্লাহ উম্মতে মুহাম্মদির জন্য পাঁচ ওয়াক্ত নামায ফরজ করেন এবং জান্নাত-জাহান্নাম দেখান।`,
+                lesson: "নামায হলো মুমিনের মিরাজ। আল্লাহর সাথে বান্দার সম্পর্কের সেতুবন্ধন হলো নামায।",
+                source: "সূত্র: সূরা বনী ইসরাঈল"
+            },
+            // --- MADINAN ERA ---
+            {
+                year: "622",
+                era: "madinan",
+                icon: "fas fa-route",
+                title: "ঐতিহাসিক হিজরত",
+                subtitle: "মক্কা ত্যাগ ও মদিনা যাত্রা",
+                short: "ঈমান রক্ষার জন্য মাতৃভূমি ত্যাগ এবং মদিনায় নতুন সভ্যতার সূচনা।",
+                story: `<p class="drop-cap">ম</p>ক্কার কাফেররা যখন নবীজিকে হত্যার চূড়ান্ত সিদ্ধান্ত নিল, তখন আল্লাহর নির্দেশে তিনি হিজরতের সিদ্ধান্ত নিলেন। হযরত আলী (রা.)-কে নিজের বিছানায় শুইয়ে তিনি হযরত আবু বকর (রা.)-কে সাথে নিয়ে রাতের আঁধারে বের হলেন। <br><br>তাঁরা তিন দিন সাওর গুহায় আত্মগোপন করে রইলেন। এরপর দীর্ঘ পথ পাড়ি দিয়ে মদিনায় (ইয়াসরিব) পৌঁছান। মদিনাবাসী 'তালা আল বাদরু আলাইনা' গেয়ে তাঁকে বরণ করে নেয়। এখান থেকেই হিজরি সাল গণনা শুরু হয় এবং একটি ইসলামী রাষ্ট্রের ভিত্তি স্থাপিত হয়।`,
+                lesson: "দ্বীনের খাতিরে ত্যাগ স্বীকার করলে আল্লাহ তার উত্তম প্রতিদান দেন।",
+                source: "সূত্র: সূরা তাওবা, আয়াত ৪০"
+            },
+            {
+                year: "623",
+                era: "madinan",
+                icon: "fas fa-mosque",
+                title: "রাষ্ট্র ও সমাজ গঠন",
+                subtitle: "মসজিদে নববী ও মদিনার সনদ",
+                short: "মসজিদ নির্মাণ এবং ইহুদি ও মুসলিমদের মধ্যে শান্তি চুক্তি।",
+                story: `<p class="drop-cap">ম</p>দিনায় পৌঁছে নবীজি প্রথম যে কাজটি করলেন তা হলো মসজিদে নববী নির্মাণ। এটি শুধু ইবাদতখানা ছিল না, বরং এটি ছিল বিচারালয়, শিক্ষালয় ও পরামর্শ কেন্দ্র। <br><br>তিনি মুহাজির ও আনসারদের মধ্যে ভ্রাতৃত্বের বন্ধন (মুওয়াকাত) স্থাপন করলেন। মদিনার ইহুদি ও অন্যান্য গোত্রগুলোর সাথে শান্তি বজায় রাখার জন্য তিনি 'মদিনার সনদ' প্রণয়ন করলেন। এটি ছিল পৃথিবীর প্রথম লিখিত সংবিধান, যেখানে ধর্মীয় স্বাধীনতা ও নাগরিক অধিকার নিশ্চিত করা হয়েছিল।`,
+                lesson: "একটি আদর্শ সমাজ গড়তে হলে আগে ভ্রাতৃত্ব এবং ন্যায়বিচার নিশ্চিত করতে হয়।",
+                source: "সূত্র: আর-রাহিকুল মাখতুম"
+            },
+            {
+                year: "624",
+                era: "madinan",
+                icon: "fas fa-shield-alt",
+                title: "বদর যুদ্ধ",
+                subtitle: "সত্য ও মিথ্যার প্রথম ফয়সালা",
+                short: "মাত্র ৩১৩ জন সাহাবী নিয়ে বিশাল কুরাইশ বাহিনীর মোকাবিলা ও বিজয়।",
+                story: `<p class="drop-cap">দ্বি</p>তীয় হিজরির ১৭ই রমজান। বদর প্রান্তরে ইসলামের প্রথম সশস্ত্র যুদ্ধ সংঘটিত হয়। একদিকে ১০০০ সুসজ্জিত কুরাইশ বাহিনী, অন্যদিকে মাত্র ৩১৩ জন প্রায় নিরস্ত্র সাহাবী। <br><br>নবীজি (সা.) আল্লাহর কাছে হাত তুলে কান্নাজড়িত কণ্ঠে দোয়া করলেন। আল্লাহ ফেরেশতা পাঠিয়ে মুসলিমদের সাহায্য করলেন। এই অসম যুদ্ধে মুসলিমরা ঐতিহাসিক বিজয় লাভ করে। আবু জাহেল সহ মক্কার শীর্ষ নেতারা নিহত হয়। এই দিনটিকে কুরআনে 'ইয়াওমুল ফুরকান' বলা হয়েছে।`,
+                lesson: "সংখ্যায় কম হলেও আল্লাহর উপর ভরসা ও সত্যের পথে অবিচল থাকলে বিজয় সুনিশ্চিত।",
+                source: "সূত্র: সূরা আনফাল"
+            },
+            {
+                year: "625",
+                era: "madinan",
+                icon: "fas fa-mountain",
+                title: "ওহুদ যুদ্ধ",
+                subtitle: "পরীক্ষা ও শিক্ষা",
+                short: "সাময়িক বিপর্যয়, নবীজির আহত হওয়া এবং হামজা (রা.) এর শাহাদাত।",
+                story: `<p class="drop-cap">ব</p>দরের প্রতিশোধ নিতে ৩০০০ সৈন্য নিয়ে কুরাইশরা ওহুদ পাহাড়ের পাদদেশে আসে। মুসলিম বাহিনীর সংখ্যা ছিল ৭০০। যুদ্ধের শুরুতে মুসলিমরা জয়ের পথে থাকলেও, তীরন্দাজ বাহিনীর একটি ভুলের কারণে পিছন থেকে খালিদ বিন ওয়ালিদের আক্রমণে যুদ্ধের মোড় ঘুরে যায়। <br><br>নবীজির দাঁত মোবারক শহীদ হয় এবং ৭০ জন সাহাবী শাহাদাত বরণ করেন। ইসলামের সিংহপুরুষ হামজা (রা.) শহীদ হন। এটি ছিল মুসলিমদের জন্য একটি বড় শিক্ষা ও পরীক্ষা।`,
+                lesson: "নেতার আদেশ অমান্য করলে বিপর্যয় অনিবার্য। বিজয় ও পরাজয় উভয়ই আল্লাহর পরীক্ষা।",
+                source: "সূত্র: সূরা আল-ইমরান"
+            },
+            {
+                year: "628",
+                era: "madinan",
+                icon: "fas fa-file-signature",
+                title: "হুদায়বিয়ার সন্ধি",
+                subtitle: "কূটনৈতিক বিজয় (ফাতহুম মুবিন)",
+                short: "আপাতদৃষ্টিতে অপমানজনক মনে হলেও এটি ছিল মহাবিজয়।",
+                story: `<p class="drop-cap">ন</p>বীজি ১৪০০ সাহাবী নিয়ে ওমরাহ করতে চাইলেন, কিন্তু কুরাইশরা বাধা দিল। হুদায়বিয়া নামক স্থানে একটি ১০ বছর মেয়াদী শান্তি চুক্তি হলো। চুক্তির শর্তগুলো বাহ্যত মুসলিমদের বিপক্ষে মনে হলেও নবীজি তা মেনে নিলেন। <br><br>আল্লাহ এই সন্ধিকে 'ফাতহুম মুবিন' বা সুস্পষ্ট বিজয় বলে ঘোষণা করলেন। শান্তির এই সময়ে মানুষ দলে দলে ইসলাম গ্রহণ করতে শুরু করে এবং ইসলামের বাণী আরবের বাইরেও পৌঁছে যায়।`,
+                lesson: "উত্তেজিত না হয়ে ধৈর্যের সাথে পরিস্থিতি মোকাবিলা করা এবং দূরদর্শী সিদ্ধান্ত নেওয়া নবওয়ী হিকমত।",
+                source: "সূত্র: সূরা ফাতহ"
+            },
+            {
+                year: "630",
+                era: "madinan",
+                icon: "fas fa-flag",
+                title: "মক্কা বিজয়",
+                subtitle: "বিনা রক্তপাতে মহাবিজয়",
+                short: "১০,০০০ সাহাবী নিয়ে জন্মভূমিতে বিজয়ী বেশে প্রবেশ ও সাধারণ ক্ষমা।",
+                story: `<p class="drop-cap">কু</p>রাইশরা সন্ধি ভঙ্গ করলে, ৮ম হিজরিতে নবীজি মক্কা অভিমুখে যাত্রা করেন। ১০,০০০ সাহাবীর 'আল্লাহু আকবার' ধ্বনিতে মক্কার আকাশ-বাতাস প্রকম্পিত হলো। কুরাইশরা কোনো প্রতিরোধ করতে পারল না। <br><br>যে শহর থেকে তাঁকে অপমান করে বের করা হয়েছিল, আজ তিনি সেই শহরের বিজেতা। কিন্তু কোনো প্রতিশোধ নেই। তিনি কাবার দরজায় দাঁড়িয়ে ঘোষণা করলেন, <strong>"যাও, তোমরা সবাই মুক্ত।"</strong> তিনি কাবার ৩৬০টি মূর্তি ভেঙে তাওহীদের পতাকা উড্ডীন করলেন।`,
+                lesson: "প্রতিশোধ নয়, ক্ষমাই ইসলামের আসল শক্তি। ক্ষমতা থাকলে বিনয়ী হতে হয়।",
+                source: "সূত্র: সহীহ বুখারী"
+            },
+            {
+                year: "632",
+                era: "madinan",
+                icon: "fas fa-praying-hands",
+                title: "বিদায় হজ্জ ও ওফাত",
+                subtitle: "শেষ ভাষণ ও মহান রবের সান্নিধ্যে",
+                short: "মানবতার বিদায়ী বার্তা এবং ইহলোক ত্যাগ।",
+                story: `<p class="drop-cap">১০</p>ম হিজরিতে আরাফাতের ময়দানে লক্ষাধিক সাহাবীর সামনে তিনি বিদায় হজ্জের ভাষণ দিলেন। তিনি নারীর অধিকার, সাম্য এবং মানবাধিকারের ঘোষণা দিলেন। শেষে বললেন, "আমি কি পৌঁছে দিয়েছি?" সবাই বলল, "হ্যাঁ"। তিনি আকাশের দিকে আঙুল তুলে বললেন, "হে আল্লাহ! তুমি সাক্ষী থাকো।" <br><br>হজ্জ থেকে ফেরার পর তিনি অসুস্থ হয়ে পড়েন। ১২ই রবিউল আউয়াল সোমবার। তিনি মেসওয়াক করলেন এবং শাহাদাত আঙুল উঁচিয়ে শেষ কথা বললেন: <strong>"আল্লাহুম্মা আর-রফিক আল-আ'লা"</strong> (হে আল্লাহ! আমি পরম বন্ধুর সান্নিধ্য চাই)। এরপর তিনি ইহলোক ত্যাগ করেন।`,
+                lesson: "নবীজি আমাদের মাঝে নেই, কিন্তু তাঁর রেখে যাওয়া কুরআন ও সুন্নাহ আমাদের পথপ্রদর্শক।",
+                source: "সূত্র: আর-রাহিকুল মাখতুম"
+            }
+        ];
+
+        // --- 2. HELPERS ---
+        function toBanglaNum(n) {
+            return String(n).replace(/[0-9]/g, d => "০১২৩৪৫৬৭৮৯"[d]);
+        }
+
+        // --- 3. RENDER FUNCTION ---
+        const container = document.getElementById('journey-container');
+
+        seerahData.forEach((item, index) => {
+            const isLeft = index % 2 === 0;
+            const isMakkan = item.era === 'makkan';
+            
+            // Dynamic Styles based on Era
+            const themeColor = isMakkan ? 'text-seerah-makkan' : 'text-seerah-madinan';
+            const bgColor = isMakkan ? 'bg-seerah-makkan' : 'bg-seerah-madinan';
+            const borderColor = isMakkan ? 'border-seerah-makkan' : 'border-seerah-madinan';
+            const lightBg = isMakkan ? 'bg-orange-50' : 'bg-emerald-50';
+
+            const html = `
+                <div class="relative flex items-center justify-between mb-20 w-full ${isLeft ? '' : 'flex-row-reverse'} group">
+                    
+                    <!-- 1. The Content Card -->
+                    <div class="w-[85%] md:w-[45%] milestone-card cursor-pointer z-10" onclick="openReader(${index})">
+                        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border-b-4 ${borderColor} relative overflow-hidden">
+                            <!-- Background Icon Faded -->
+                            <i class="${item.icon} absolute -right-6 -bottom-6 text-9xl opacity-5 ${isMakkan ? 'text-orange-900' : 'text-emerald-900'} transition-transform group-hover:rotate-12"></i>
+                            
+                            <div class="relative z-10">
+                                <div class="flex justify-between items-start mb-3">
+                                    <span class="inline-block px-3 py-1 text-xs font-bold text-white ${bgColor} rounded-full shadow-md">
+                                        ${toBanglaNum(item.year)} খ্রি.
+                                    </span>
+                                    <i class="fas fa-expand text-gray-300 group-hover:${themeColor}"></i>
+                                </div>
+
+                                <h2 class="text-2xl md:text-3xl font-bold font-serif text-gray-800 mb-1 group-hover:${themeColor} transition-colors">${item.title}</h2>
+                                <h3 class="text-xs md:text-sm font-bold text-gray-400 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">${item.subtitle}</h3>
+                                
+                                <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-4 line-clamp-3 font-sans">
+                                    ${item.short}
+                                </p>
+                                
+                                <button class="text-xs font-bold ${themeColor} flex items-center gap-2 group-hover:gap-3 transition-all bg-white px-3 py-1 rounded-full border border-gray-100 shadow-sm">
+                                    বিস্তারিত পড়ুন <i class="fas fa-book-open"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. The Center Node (Milestone Marker) -->
+                    <div class="absolute left-[20px] md:left-1/2 md:transform md:-translate-x-1/2 flex items-center justify-center hidden md:flex">
+                        <div class="w-12 h-12 rounded-full bg-white border-4 ${borderColor} flex items-center justify-center shadow-xl z-10 transition-transform group-hover:scale-110" onclick="openReader(${index})">
+                            <i class="${item.icon} ${themeColor} text-lg"></i>
+                        </div>
+                    </div>
+
+                    <!-- 3. Mobile Connector Node (Only Visible on Mobile) -->
+                    <div class="absolute -left-[4px] md:hidden w-6 h-6 rounded-full border-4 ${borderColor} bg-white z-10"></div>
+
+                    <!-- 4. Empty Space for Alignment -->
+                    <div class="hidden md:block w-[45%]">
+                        <div class="text-${isLeft ? 'right' : 'left'} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pr-10 pl-10">
+                            <span class="text-8xl font-bold text-gray-200 font-arabic select-none">${toBanglaNum(index + 1)}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += html;
+        });
+
+        // --- 4. READER MODAL LOGIC ---
+        const modal = document.getElementById('reader-modal');
+        const rTitle = document.getElementById('reader-title');
+        const rYear = document.getElementById('reader-year');
+        const rBody = document.getElementById('reader-body');
+        const rLesson = document.getElementById('reader-lesson');
+        const rSource = document.getElementById('reader-source');
+        const rIcon = document.getElementById('reader-icon');
+        let currentFontSize = 1.125; // 1.125rem = text-lg
+
+        function openReader(index) {
+            const data = seerahData[index];
+            
+            // Populate Data
+            rTitle.innerText = data.title;
+            rYear.innerText = `${toBanglaNum(data.year)} খ্রিস্টাব্দ • ${data.era === 'makkan' ? 'মক্কী জীবন' : 'মাদানী জীবন'}`;
+            rBody.innerHTML = data.story;
+            rLesson.innerText = data.lesson;
+            rSource.innerText = data.source;
+            
+            // Style Icon
+            rIcon.className = `${data.icon}`;
+            const colorClass = data.era === 'makkan' ? 'text-seerah-makkan' : 'text-seerah-madinan';
+            rIcon.classList.remove('text-seerah-makkan', 'text-seerah-madinan');
+            rIcon.classList.add(colorClass);
+
+            // Show Modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReader() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function adjustFont(change) {
+            currentFontSize += (change * 0.1);
+            // Clamp font size
+            if (currentFontSize < 0.9) currentFontSize = 0.9;
+            if (currentFontSize > 2.0) currentFontSize = 2.0;
+            
+            rBody.style.fontSize = `${currentFontSize}rem`;
+        }
+    </script>
+</body>
+</html>
