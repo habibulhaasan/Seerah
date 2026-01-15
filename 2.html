@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সীরাতুন্নবী (সা.) - জীবনপঞ্জি</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0f766e;
+            --secondary-color: #134e4a;
+            --accent-color: #f59e0b;
+            --bg-color: #f0fdf4;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            margin-top: 1.5rem;
+            position: relative;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 20px;
+            padding-left: 45px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+        }
+
+        .timeline-wrapper {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: #cbd5e1;
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            width: 100%;
+            position: relative;
+            clear: both;
+        }
+
+        .timeline-item:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+            float: left;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border: 4px solid white;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            z-index: 10;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            float: right;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -10px;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--card-bg);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -10px;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--card-bg) transparent transparent;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--primary-color);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .card-details {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        .period-header {
+            background: #fff;
+            color: var(--secondary-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin: 2rem auto;
+            width: fit-content;
+            border: 2px solid var(--secondary-color);
+            position: relative;
+            z-index: 5;
+            clear: both;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--secondary-color);
+            color: white;
+            margin-top: 3rem;
+        }
+
+        /* Error Message Style */
+        .error-message {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #f87171;
+            margin: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-wrapper::before {
+                left: 20px;
+            }
+            .timeline-content {
+                width: calc(100% - 50px);
+                float: right !important;
+                margin-left: 50px;
+            }
+            .timeline-dot {
+                left: 20px;
+            }
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -10px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--card-bg) transparent transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>সীরাতুন্নবী (সা.)</h1>
+    <p>মহানবী হযরত মুহাম্মদ (সা.)-এর জীবনের পূর্ণাঙ্গ ঘটনাপঞ্জি</p>
+    
+    <div class="search-container">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="ঘটনা খুঁজুন (যেমন: বদর যুদ্ধ, জন্ম, মেরাজ)...">
+    </div>
+</header>
+
+<div class="timeline-wrapper" id="timelineContainer">
+    <div style="text-align: center; padding: 2rem;">
+        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary-color);"></i>
+        <p>তথ্য লোড হচ্ছে...</p>
+    </div>
+</div>
+
+<footer>
+    <p>তথ্যসূত্র: সহিহ হাদিস ও সীরাত গ্রন্থাবলি</p>
+    <p>&copy; ২০২৫ সীরাত প্রজেক্ট</p>
+</footer>
+
+<script>
+    const timelineContainer = document.getElementById('timelineContainer');
+    const searchInput = document.getElementById('searchInput');
+    let allEvents = [];
+
+    // Function to fetch JSON Data
+    async function loadData() {
+        try {
+            const response = await fetch('data.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            allEvents = data.events_timeline;
+            renderTimeline(allEvents);
+        } catch (error) {
+            console.error('Data Fetch Error:', error);
+            timelineContainer.innerHTML = `
+                <div class="error-message">
+                    <h3>তথ্য লোড করা যায়নি</h3>
+                    <p>কারণ: ${error.message}</p>
+                    <br>
+                    <small><strong>সতর্কতা:</strong> আপনি যদি এই ফাইলটি সরাসরি ওপেন করে থাকেন (file://), তবে ব্রাউজার সিকিউরিটির কারণে এটি কাজ করবে না। দয়া করে <strong>Live Server</strong> বা কোনো লোকাল সার্ভার ব্যবহার করুন।</small>
+                </div>
+            `;
+        }
+    }
+
+    function renderTimeline(data) {
+        timelineContainer.innerHTML = '';
+        let lastPeriod = '';
+
+        if (data.length === 0) {
+            timelineContainer.innerHTML = '<p style="text-align:center; padding: 20px;">কোনো ফলাফল পাওয়া যায়নি</p>';
+            return;
+        }
+
+        data.forEach(event => {
+            // Check if period changed to add a header
+            if (event.period !== lastPeriod) {
+                const periodHeader = document.createElement('div');
+                periodHeader.className = 'period-header';
+                periodHeader.innerText = event.period;
+                timelineContainer.appendChild(periodHeader);
+                lastPeriod = event.period;
+            }
+
+            const item = document.createElement('div');
+            item.className = 'timeline-item';
+
+            // Determine what year/age text to show
+            let dateText = '';
+            if (event.year_hijri) {
+                dateText = `${event.year_hijri} হিজরি`;
+            } else if (event.year_gregorian) {
+                dateText = `${event.year_gregorian} খ্রি.`;
+                if(event.age) dateText += ` (বয়স: ${event.age})`;
+            }
+
+            item.innerHTML = `
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="year-badge">${dateText}</span>
+                    <h3 class="card-title">${event.title}</h3>
+                    <p class="card-details">${event.details}</p>
+                </div>
+            `;
+            timelineContainer.appendChild(item);
+        });
+    }
+
+    // Search Functionality
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredData = allEvents.filter(event => 
+            event.title.toLowerCase().includes(searchTerm) || 
+            event.details.toLowerCase().includes(searchTerm) ||
+            event.year_gregorian?.toString().includes(searchTerm)
+        );
+        renderTimeline(filteredData);
+    });
+
+    // Initialize Fetch
+    loadData();
+
+</script>
+
+</body>
+</html>
