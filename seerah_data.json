@@ -1,0 +1,159 @@
+{
+  "book_info": {
+    "title": "আর রাহীকুল মাখতূম",
+    "author": "আল্লামা সফিউর রহমান মোবারকপুরী (রহ.)",
+    "source_type": "Next.js Hydration Data"
+  },
+  "eras": [
+    {
+      "era_id": 1,
+      "era_title": "Pre Prophethood (নবুওয়তের পূর্বকাল)",
+      "chapters": [
+        {
+          "id": 182,
+          "title": "তৎকালীন আরবের ভৌগলিক, সামাজিক, প্রশাসনিক ও ধর্মীয় অবস্থা",
+          "slug": "geography-social-condition",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/182/1.png"
+        },
+        {
+          "id": 183,
+          "title": "জাহেলিয়াত সমাজের সংক্ষিপ্ত বিবরণ",
+          "slug": "jaaheliyyaat-society",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/183/2.jpg"
+        },
+        {
+          "id": 184,
+          "title": "পয়গম্বরী বংশাবলী ও রাসুলুল্লাহ (সা.)-এর পবিত্র জীবনের ৪০ বছর",
+          "slug": "lineage-and-40-years",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/184/3.png"
+        },
+        {
+          "id": 185,
+          "title": "সৌভাগ্যময় জন্ম এবং পবিত্র জীবনের চল্লিশ বছর",
+          "slug": "blessed-birth",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/185/4.jpg"
+        }
+      ]
+    },
+    {
+      "era_id": 2,
+      "era_title": "Makkan Life (মক্কী জীবন)",
+      "chapters": [
+        {
+          "id": 186,
+          "title": "নুবুওয়াতী জীবন, রিসালাত ও দাওয়াত",
+          "slug": "nubuwwat-risalat",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/186/5.png"
+        },
+        {
+          "id": 187,
+          "title": "পয়গম্বরীত্বের প্রচ্ছায়ায়",
+          "slug": "under-prophethood",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/187/6.png"
+        },
+        {
+          "id": 188,
+          "title": "প্রথম ধাপ: ইসলাম প্রচারে আত্মনিয়োগ",
+          "slug": "first-stage-propagation",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/188/7.jpg"
+        },
+        {
+          "id": 189,
+          "title": "দ্বিতীয় ধাপ: প্রকাশ্য প্রচার",
+          "slug": "second-stage-public",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/189/8.jpg"
+        },
+        {
+          "id": 190,
+          "title": "বড় বড় সাহাবাদের ইসলাম গ্রহণ",
+          "slug": "sahaba-acceptance",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/190/9.png"
+        },
+        {
+          "id": 191,
+          "title": "পূর্ণাঙ্গ বয়কট (শিয়াবে আবু তালিব)",
+          "slug": "boycott",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/191/10.png"
+        },
+        {
+          "id": 193,
+          "title": "শোকের বছর (আমুল হুযন)",
+          "slug": "year-of-sorrow",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/193/12.png"
+        },
+        {
+          "id": 197,
+          "title": "নৈশ ভ্রমণ ও উর্ধ্বগমন বা মি'রাজ",
+          "slug": "isra-miraj",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/197/16.jpg"
+        },
+        {
+          "id": 200,
+          "title": "রাসূলুল্লাহ (সা.)-এর হিজরত",
+          "slug": "hijrah",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/200/19.jpg"
+        }
+      ]
+    },
+    {
+      "era_id": 3,
+      "era_title": "Madinan Life (মাদানী জীবন)",
+      "chapters": [
+        {
+          "id": 201,
+          "title": "মদীনার জীবন: দাওয়াত, জিহাদ ও পরিত্রাণের যুগ",
+          "slug": "madina-life-start",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/201/20.jpg"
+        },
+        {
+          "id": 203,
+          "title": "ইহুদীদের সঙ্গে চুক্তি সম্পাদন",
+          "slug": "treaty-jews",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/203/22.png"
+        },
+        {
+          "id": 205,
+          "title": "গাযওয়ায়ে বদরে কুবরা",
+          "slug": "battle-of-badr",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/205/24.jpg"
+        },
+        {
+          "id": 206,
+          "title": "উহুদ যুদ্ধ",
+          "slug": "battle-of-uhud",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/206/25.jpg"
+        },
+        {
+          "id": 208,
+          "title": "গাযওয়ায়ে আহযাব (খন্দক বা পরিখার যুদ্ধ)",
+          "slug": "battle-of-trench",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/208/27.jpg"
+        },
+        {
+          "id": 213,
+          "title": "হুদায়বিয়ার সন্ধি ও ওমরাহ",
+          "slug": "hudaibiyah",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/213/32.jpg"
+        },
+        {
+          "id": 220,
+          "title": "মক্কা বিজয়",
+          "slug": "conquest-of-makkah",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/220/39.jpg"
+        },
+        {
+          "id": 226,
+          "title": "বিদায় হজ",
+          "slug": "farewell-hajj",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/226/45.jpg"
+        },
+        {
+          "id": 227,
+          "title": "সর্বোচ্চ বন্ধুর দিকে ধাবমান (ওফাত)",
+          "slug": "death",
+          "image": "https://gtaf-media.sfo3.cdn.digitaloceanspaces.com/production/Seerah/5/227/46.jpg"
+        }
+      ]
+    }
+  ]
+}
