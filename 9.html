@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সীরাত আল-মানচিত্র - ভিজুয়াল জার্নি</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        seerah: {
+                            dark: '#1a1c23',    // Dark background
+                            paper: '#f3f4f6',   // Reading paper color
+                            gold: '#d4af37',    // Islamic Gold
+                            makkan: '#b45309',  // Amber/Desert for Makkah
+                            madinan: '#047857', // Emerald for Madinah
+                            accent: '#0ea5e9',  // Sky blue accents
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Hind Siliguri"', 'sans-serif'],
+                        serif: ['"Noto Serif Bengali"', 'serif'],
+                        arabic: ['"Amiri"', 'serif'],
+                    },
+                    backgroundImage: {
+                        'pattern': "url('https://www.transparenttextures.com/patterns/arabesque.png')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* The Path Line (SVG Animation feel) */
+        .journey-path {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                #b45309 0%, 
+                #b45309 45%, /* Makkah Era Transition */
+                #047857 55%, 
+                #047857 100% /* Madinah Era */
+            );
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Card Hover Effects */
+        .milestone-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .milestone-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Node Pulse */
+        .node-pulse {
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            animation: pulse-gold 2s infinite;
+        }
+        @keyframes pulse-gold {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        /* Modal/Reader Animations */
+        .reader-modal {
+            clip-path: circle(0% at 50% 50%);
+            transition: clip-path 0.5s ease-in-out;
+        }
+        .reader-modal.active {
+            clip-path: circle(150% at 50% 50%);
+        }
+
+        /* Custom Scrollbar for Reader */
+        .reader-content::-webkit-scrollbar { width: 6px; }
+        .reader-content::-webkit-scrollbar-track { background: #f1f1f1; }
+        .reader-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        /* Typography */
+        .drop-cap::first-letter {
+            font-size: 3.5rem;
+            float: left;
+            margin-right: 0.75rem;
+            margin-top: -0.5rem;
+            font-family: 'Amiri', serif;
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body class="text-gray-800 font-sans">
+
+    <!-- DASHBOARD HEADER (The Complete Package View) -->
+    <header class="bg-seerah-dark text-white relative overflow-hidden shadow-2xl z-20">
+        <div class="absolute inset-0 opacity-5 bg-pattern"></div>
+        <div class="container mx-auto px-4 py-8 relative z-10">
+            <!-- Top Bar -->
+            <div class="flex justify-between items-center mb-8 border-b border-gray-700 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-seerah-gold flex items-center justify-center text-seerah-dark font-bold text-xl">
+                        <i class="fas fa-kaaba"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-serif font-bold tracking-wide">সীরাত আল-মানচিত্র</h1>
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">ভিজুয়াল বায়োগ্রাফি</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex gap-6 text-sm text-gray-300">
+                    <span class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-seerah-makkan"></div> মক্কী জীবন (৫৩ বছর)</span>
+                    <span class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-seerah-madinan"></div> মাদানী জীবন (১০ বছর)</span>
+                </div>
+            </div>
+
+            <!-- Stats Grid (Infographic Style) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                <div class="bg-white/5 p-4 rounded-lg backdrop-blur-sm border border-white/10 text-center">
+                    <div class="text-2xl font-bold text-seerah-gold font-arabic">৫৭০</div>
+                    <div class="text-xs text-gray-400 mt-1">খ্রিস্টাব্দে জন্ম</div>
+                </div>
+                <div class="bg-white/5 p-4 rounded-lg backdrop-blur-sm border border-white/10 text-center">
+                    <div class="text-2xl font-bold text-seerah-gold font-arabic">৪০</div>
+                    <div class="text-xs text-gray-400 mt-1">বছর বয়সে নবুওয়াত</div>
+                </div>
+                <div class="bg-white/5 p-4 rounded-lg backdrop-blur-sm border border-white/10 text-center">
+                    <div class="text-2xl font-bold text-seerah-gold font-arabic">২৩</div>
+                    <div class="text-xs text-gray-400 mt-1">বছর কুরআন নাযিল</div>
+                </div>
+                <div class="bg-white/5 p-4 rounded-lg backdrop-blur-sm border border-white/10 text-center">
+                    <div class="text-2xl font-bold text-seerah-gold font-arabic">৬৩</div>
+                    <div class="text-xs text-gray-400 mt-1">বছর জীবনকাল</div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-6">
+                 <p class="text-gray-400 italic text-sm">"নিচের দিকে স্ক্রল করে ইতিহাসের পথে ভ্রমণ শুরু করুন"</p>
+                 <i class="fas fa-chevron-down text-seerah-gold animate-bounce mt-2"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN JOURNEY MAP -->
+    <main class="relative py-20 overflow-hidden bg-gray-50 min-h-screen">
+        
+        <!-- The Central Path -->
+        <div class="journey-path"></div>
+
+        <div class="container mx-auto px-4 relative max-w-5xl" id="journey-container">
+            <!-- Dynamic Content Injected Here -->
+        </div>
+
+    </main>
+
+    <!-- IMMERSIVE READER MODAL (The "Book" View) -->
+    <div id="reader-modal" class="reader-modal fixed inset-0 z-50 bg-white flex flex-col h-screen w-screen">
+        <!-- Reader Header -->
+        <div class="bg-seerah-paper border-b px-6 py-4 flex justify-between items-center shadow-sm shrink-0">
+            <div>
+                <span id="reader-year" class="text-xs font-bold text-seerah-gold uppercase tracking-widest"></span>
+                <h2 id="reader-title" class="text-xl md:text-2xl font-serif font-bold text-gray-800"></h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Font Controls -->
+                <div class="hidden md:flex bg-white rounded-full border px-3 py-1 gap-3">
+                    <button onclick="adjustFont(-1)" class="text-gray-500 hover:text-black"><i class="fas fa-minus text-xs"></i></button>
+                    <span class="text-xs font-bold text-gray-400">A</span>
+                    <button onclick="adjustFont(1)" class="text-gray-500 hover:text-black"><i class="fas fa-plus text-xs"></i></button>
+                </div>
+                <button onclick="closeReader()" class="w-10 h-10 rounded-full bg-gray-200 hover:bg-red-100 hover:text-red-600 transition flex items-center justify-center">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Reader Content (Scrollable) -->
+        <div class="flex-1 overflow-y-auto reader-content bg-seerah-paper">
+            <div class="max-w-3xl mx-auto p-8 md:p-16">
+                <!-- Hero Image/Icon in Reader -->
+                <div class="flex justify-center mb-10">
+                    <div class="w-24 h-24 rounded-full bg-white border-4 border-double border-seerah-gold flex items-center justify-center text-4xl text-seerah-gold shadow-lg">
+                        <i id="reader-icon" class=""></i>
+                    </div>
+                </div>
+
+                <!-- Main Text -->
+                <div id="reader-body" class="prose prose-lg max-w-none font-serif text-gray-700 leading-loose text-justify">
+                    <!-- Text goes here -->
+                </div>
+
+                <!-- Footer / Lessons -->
+                <div class="mt-16 pt-8 border-t-2 border-dashed border-gray-300">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-seerah-gold">
+                        <h4 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                            <i class="fas fa-lightbulb text-yellow-500"></i> শিক্ষার আলো
+                        </h4>
+                        <p id="reader-lesson" class="text-gray-600 italic font-sans"></p>
+                    </div>
+                    <p id="reader-source" class="text-right text-xs text-gray-400 mt-4 font-mono"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. THE COMPLETE DATA PACKAGE ---
+        const seerahData = [
+            {
+                year: "570",
+                era: "makkan", // makkan | madinan
+                title: "ধরণীতে শুভাগমন",
+                subtitle: "আমুল ফিল ও অলৌকিক জন্ম",
+                summary: "আইয়ামে জাহেলিয়াতের ঘোর অন্ধকারে মক্কার বুকে এক নূরের প্রদীপ জ্বলে উঠল।",
+                story: `<p class="drop-cap">ত</p>খন আরবের অবস্থা ছিল ভয়াবহ। মানুষ মূর্তিপূজা, জুয়া, হত্যা আর অন্যায় অবিচারে লিপ্ত ছিল। ঠিক সেই সময়ে, ১২ই রবিউল আউয়াল সোমবার সুবহে সাদিকের সময় মা আমিনার ঘর আলোকিত করে জন্মগ্রহণ করেন হযরত মুহাম্মদ (সা.)। <br><br> তাঁর জন্মের বছরটিকে 'আমুল ফিল' বা হস্তী বছর বলা হয়। আবরাহা বাদশা বিশাল হাতির বাহিনী নিয়ে কাবা শরীফ ধ্বংস করতে এসেছিল। মক্কাবাসী ভয়ে পাহাড়ে আশ্রয় নিয়েছিল। তখন আল্লাহ ঝাঁকে ঝাঁকে আবাবিল পাখি পাঠান। এই পাখিরা তাদের ঠোঁটে ও পায়ে ছোট ছোট পাথর বহন করছিল। তারা আবরাহার বাহিনীর ওপর পাথর নিক্ষেপ করলে বিশাল বাহিনী ধ্বংসস্তূপে পরিণত হয়। <br><br>জন্মের পর দাদা আব্দুল মুত্তালিব তাঁকে কোলে নিয়ে কাবা ঘরে প্রবেশ করেন এবং নাম রাখেন 'মুহাম্মদ', যার অর্থ 'প্রশংসিত' (The Praised One)।`,
+                lesson: "আল্লাহ তাঁর পবিত্র ঘর এবং তাঁর প্রিয় হাবিবকে অলৌকিকভাবে রক্ষা করেন। জন্মের শুরু থেকেই তাঁর জীবন ছিল মোজেজায় পূর্ণ।",
+                source: "সূত্র: আর-রাহিকুল মাখতুম, পৃষ্ঠা ৫২",
+                icon: "fas fa-star"
+            },
+            {
+                year: "576",
+                era: "makkan",
+                title: "শৈশব ও এতিম জীবন",
+                subtitle: "মায়ের ইন্তেকাল ও অভিভাবকত্ব",
+                summary: "জন্মের আগেই পিতাকে এবং মাত্র ৬ বছর বয়সে মাকে হারান।",
+                story: `<p class="drop-cap">জ</p>ন্মের আগেই তিনি পিতাকে হারিয়েছিলেন। ছয় বছর বয়সে মা আমিনা তাঁকে নিয়ে মদিনায় (তৎকালীন ইয়াসরিব) বাবার কবর জিয়ারতে যান। ফেরার পথে 'আবওয়া' নামক স্থানে মা আমিনা হঠাৎ অসুস্থ হয়ে ইন্তেকাল করেন। <br><br>ভাবুন সেই দৃশ্য! মরুভূমির বুকে ছোট্ট শিশুটি মায়ের লাশের পাশে বসে আছে। দাসী উম্মে আইমান তাঁকে মক্কায় নিয়ে আসেন। এরপর দাদা আব্দুল মুত্তালিব তাঁকে পরম স্নেহে বুকে জড়িয়ে নেন। তিনি বলতেন, "আমার এই নাতির শান অনেক উঁচুতে।" কিন্তু দুই বছর পর দাদাও ইন্তেকাল করেন। এরপর চাচা আবু তালিব তাঁর লালন-পালনের দায়িত্ব নেন।`,
+                lesson: "আল্লাহ তাঁর নবীকে দুনিয়ার কারো মুখাপেক্ষী না করে, সরাসরি নিজের তত্ত্বাবধানে বড় করেছেন।",
+                source: "সূত্র: সিরাতে ইবনে হিশাম",
+                icon: "fas fa-child"
+            },
+            {
+                year: "595",
+                era: "makkan",
+                title: "হিলফুল ফুজুল ও বিবাহ",
+                subtitle: "শান্তি সংঘ গঠন ও খাদিজা (রা.)",
+                summary: "মক্কার সবচেয়ে সত্যবাদী যুবক হিসেবে পরিচিতি লাভ ও পবিত্র বন্ধন।",
+                story: `<p class="drop-cap">কৈ</p>শোরে তিনি 'হারবুল ফিজার' বা অন্যায় যুদ্ধ প্রত্যক্ষ করেন। যুদ্ধের ভয়াবহতা দেখে তিনি কয়েকজন যুবককে নিয়ে 'হিলফুল ফুজুল' বা শান্তিসংঘ গঠন করেন। তাঁদের শপথ ছিল মক্কায় কোনো মজলুমকে নির্যাতিত হতে দেওয়া হবে না। <br><br>তাঁর সততায় মুগ্ধ হয়ে আরবের ধনাঢ্য নারী খাদিজা (রা.) ব্যবসার দায়িত্ব দেন এবং পরে বিবাহের প্রস্তাব পাঠান। তখন নবীজির বয়স ছিল ২৫ এবং খাদিজার (রা.) বয়স ছিল ৪০। এই বিবাহ ছিল ভালোবাসার এবং শ্রদ্ধার এক অনন্য নিদর্শন।`,
+                lesson: "অন্যায় প্রতিরোধের জন্য সংঘবদ্ধ প্রচেষ্টা এবং পারিবারিক জীবনে সততাই হলো সাফল্যের চাবিকাঠি।",
+                source: "সূত্র: সহীহ বুখারী",
+                icon: "fas fa-handshake"
+            },
+            {
+                year: "610",
+                era: "makkan",
+                title: "হেরা গুহা ও ওহী",
+                subtitle: "নবুওয়াত প্রাপ্তি ও কুরআনের সূচনা",
+                summary: "৪০ বছর বয়সে জিবরাঈল (আ.)-এর মাধ্যমে প্রথম ওহী লাভ।",
+                story: `<p class="drop-cap">ম</p>ক্কার কোলাহল ছেড়ে তিনি হেরা গুহায় নির্জনে ধ্যানে মগ্ন থাকতেন। ৬১০ খ্রিস্টাব্দের রমজান মাসে জিবরাঈল (আ.) আল্লাহর পক্ষ থেকে প্রথম ওহী নিয়ে আসেন। <br><br>জিবরাঈল (আ.) তাঁকে বললেন, <strong>'ইকরা'</strong> (পড়ুন)। তিনি উত্তর দিলেন, 'আমি পড়তে জানি না।' জিবরাঈল (আ.) তাঁকে বুকে চেপে ধরলেন এবং সূরা আলাকের প্রথম ৫ আয়াত পাঠ করালেন। এটিই ছিল কুরআনের প্রথম অবতরণ। ভয়ে কাঁপতে কাঁপতে তিনি ঘরে ফিরলেন এবং খাদিজা (রা.)-কে বললেন, "আমাকে চাদর দিয়ে ঢেকে দাও।"`,
+                lesson: "জ্ঞান অর্জন (ইকরা) হলো ইসলামের প্রথম নির্দেশ এবং সত্যের সন্ধান করা প্রতিটি মানুষের কর্তব্য।",
+                source: "সূত্র: সহীহ বুখারী, হাদিস ৩",
+                icon: "fas fa-book-quran"
+            },
+            {
+                year: "622",
+                era: "madinan", // Switch to Madinan Era
+                title: "হিজরত: এক নতুন অধ্যায়",
+                subtitle: "মক্কা ত্যাগ ও মদিনায় রাষ্ট্র গঠন",
+                summary: "ঈমান রক্ষার জন্য মাতৃভূমি ত্যাগ করে মদিনায় গমন।",
+                story: `<p class="drop-cap">ম</p>ক্কার কাফেররা যখন দারুন নাদওয়ায় বসে নবীজিকে হত্যার চূড়ান্ত সিদ্ধান্ত নিল, তখন আল্লাহর নির্দেশে তিনি হিজরতের সিদ্ধান্ত নিলেন। <br><br>হযরত আলী (রা.)-কে নিজের বিছানায় শুইয়ে তিনি হযরত আবু বকর (রা.)-কে সাথে নিয়ে রাতের আঁধারে বের হলেন। তাঁরা তিন দিন সাওর গুহায় আত্মগোপন করে রইলেন। এরপর দীর্ঘ পথ পাড়ি দিয়ে মদিনায় পৌঁছান। মদিনাবাসী 'তালা আল বাদরু আলাইনা' গেয়ে তাঁকে বরণ করে নেয়। এখান থেকেই হিজরি সাল গণনা শুরু হয় এবং একটি ইসলামী রাষ্ট্রের ভিত্তি স্থাপিত হয়।`,
+                lesson: "ত্যাগের পরেই আসে মহান বিজয়। দ্বীনের জন্য হিজরত একটি ইবাদত।",
+                source: "সূত্র: সূরা তাওবা, আয়াত ৪০",
+                icon: "fas fa-route"
+            },
+            {
+                year: "624",
+                era: "madinan",
+                title: "বদর যুদ্ধ",
+                subtitle: "সত্য ও মিথ্যার প্রথম ফয়সালা",
+                summary: "মাত্র ৩১৩ জন সাহাবী নিয়ে বিশাল কুরাইশ বাহিনীর মোকাবিলা।",
+                story: `<p class="drop-cap">দ্বি</p>তীয় হিজরির ১৭ই রমজান। বদর প্রান্তরে ইসলামের প্রথম সশস্ত্র যুদ্ধ সংঘটিত হয়। একদিকে ১০০০ সুসজ্জিত কুরাইশ বাহিনী, অন্যদিকে মাত্র ৩১৩ জন নিরস্ত্র সাহাবী। <br><br>নবীজি (সা.) আল্লাহর কাছে হাত তুলে কান্নাজড়িত কণ্ঠে দোয়া করলেন, "হে আল্লাহ! আজ যদি এই ছোট্ট দলটি ধ্বংস হয়ে যায়, তবে পৃথিবীতে তোমার ইবাদত করার কেউ থাকবে না।" আল্লাহ ফেরেশতা পাঠিয়ে মুসলিমদের সাহায্য করলেন। এই অসম যুদ্ধে মুসলিমরা ঐতিহাসিক বিজয় লাভ করে। আবু জাহেল সহ মক্কার শীর্ষ নেতারা নিহত হয়।`,
+                lesson: "সংখ্যায় কম হলেও আল্লাহর উপর ভরসা ও সত্যের পথে অবিচল থাকলে বিজয় সুনিশ্চিত।",
+                source: "সূত্র: সূরা আনফাল",
+                icon: "fas fa-shield-alt"
+            },
+            {
+                year: "630",
+                era: "madinan",
+                title: "মক্কা বিজয়",
+                subtitle: "বিনা রক্তপাতে মহাবিজয়",
+                summary: "১০,০০০ সাহাবী নিয়ে জন্মভূমিতে বিজয়ী বেশে প্রবেশ।",
+                story: `<p class="drop-cap">দী</p>র্ঘ ৮ বছর পর তিনি মক্কায় প্রবেশ করেন। যারা তাঁকে নির্যাতন করে দেশ থেকে বের করে দিয়েছিল, আজ তারা তাঁর সামনে মাথা নিচু করে দাঁড়িয়ে। <br><br>তিনি চাইলে প্রতিশোধ নিতে পারতেন, কিন্তু তিনি কাবার দরজায় দাঁড়িয়ে ঘোষণা করলেন, <strong>"আজ তোমাদের বিরুদ্ধে আমার কোনো অভিযোগ নেই। যাও, তোমরা সবাই মুক্ত।"</strong> তিনি কাবার ৩৬০টি মূর্তি ভেঙে তাওহীদের পতাকা উড্ডীন করলেন।`,
+                lesson: "ক্ষমাই হলো প্রকৃত শক্তি। বিজয় আসলে আল্লাহর প্রতি আরও বিনয়ী হতে হয়।",
+                source: "সূত্র: সিরাতে ইবনে হিশাম",
+                icon: "fas fa-flag"
+            },
+            {
+                year: "632",
+                era: "madinan",
+                title: "ওফাত ও মহান প্রস্থান",
+                subtitle: "পরম বন্ধুর সান্নিধ্যে গমন",
+                summary: "বিদায় হজ্জের ভাষণ ও ইহলোক ত্যাগ।",
+                story: `<p class="drop-cap">বি</p>দায় হজ্জ থেকে ফেরার পর তিনি অসুস্থ হয়ে পড়েন। ১২ই রবিউল আউয়াল সোমবার। তিনি মেসওয়াক করলেন এবং শাহাদাত আঙুল উঁচিয়ে শেষ কথা বললেন: <strong>"আল্লাহুম্মা আর-রফিক আল-আ'লা"</strong> (হে আল্লাহ! আমি পরম বন্ধুর সান্নিধ্য চাই)। এরপর তিনি ইহলোক ত্যাগ করেন। মদিনার আকাশ-বাতাস শোকে ভারী হয়ে ওঠে।`,
+                lesson: "নবীজি আমাদের মাঝে নেই, কিন্তু তাঁর রেখে যাওয়া কুরআন ও সুন্নাহ আমাদের চিরকালের পাথেয়।",
+                source: "সূত্র: সহীহ বুখারী",
+                icon: "fas fa-praying-hands"
+            }
+        ];
+
+        // --- 2. UTILITY: Bangla Converter ---
+        function toBanglaNum(n) {
+            const nums = { '0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯' };
+            return String(n).replace(/[0-9]/g, char => nums[char]);
+        }
+
+        // --- 3. RENDER THE JOURNEY MAP ---
+        const container = document.getElementById('journey-container');
+
+        seerahData.forEach((item, index) => {
+            const isLeft = index % 2 === 0;
+            const isMakkan = item.era === 'makkan';
+            const themeColor = isMakkan ? 'text-seerah-makkan' : 'text-seerah-madinan';
+            const borderColor = isMakkan ? 'border-seerah-makkan' : 'border-seerah-madinan';
+            const bgColor = isMakkan ? 'bg-seerah-makkan' : 'bg-seerah-madinan';
+
+            const html = `
+                <div class="relative flex items-center justify-between mb-24 w-full ${isLeft ? '' : 'flex-row-reverse'} group">
+                    
+                    <!-- 1. The Content Card -->
+                    <div class="w-5/12 milestone-card cursor-pointer" onclick="openReader(${index})">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 ${borderColor} relative overflow-hidden">
+                            <!-- Background Icon Faded -->
+                            <i class="${item.icon} absolute -right-6 -bottom-6 text-9xl text-gray-100 opacity-50 transition-transform group-hover:rotate-12"></i>
+                            
+                            <div class="relative z-10">
+                                <span class="inline-block px-3 py-1 text-xs font-bold text-white ${bgColor} rounded-full mb-3 shadow-md">
+                                    ${toBanglaNum(item.year)} খ্রিস্টাব্দ
+                                </span>
+                                <h2 class="text-2xl font-bold font-serif text-gray-800 mb-1 group-hover:${themeColor} transition-colors">${item.title}</h2>
+                                <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">${item.subtitle}</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                                    ${item.summary}
+                                </p>
+                                <button class="text-xs font-bold ${themeColor} flex items-center gap-1 hover:gap-2 transition-all">
+                                    বিস্তারিত পড়ুন <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. The Center Node (Milestone Marker) -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-white border-4 ${borderColor} flex items-center justify-center shadow-xl z-10 node-pulse cursor-pointer group-hover:scale-110 transition-transform" onclick="openReader(${index})">
+                            <i class="${item.icon} ${themeColor} text-xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- 3. Empty Space for Alignment -->
+                    <div class="w-5/12">
+                        <!-- Optional: Add a date label or decorative element on the empty side -->
+                         <div class="hidden md:block text-${isLeft ? 'right' : 'left'} opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <span class="text-6xl font-bold text-gray-200 font-arabic">${toBanglaNum(index + 1)}</span>
+                        </div>
+                    </div>
+
+                </div>
+            `;
+            container.innerHTML += html;
+        });
+
+        // --- 4. READER MODAL LOGIC ---
+        const modal = document.getElementById('reader-modal');
+        const rTitle = document.getElementById('reader-title');
+        const rYear = document.getElementById('reader-year');
+        const rBody = document.getElementById('reader-body');
+        const rLesson = document.getElementById('reader-lesson');
+        const rSource = document.getElementById('reader-source');
+        const rIcon = document.getElementById('reader-icon');
+
+        // Font Size State
+        let currentFontSize = 1.125; // rem (text-lg)
+
+        function openReader(index) {
+            const data = seerahData[index];
+            rTitle.innerText = data.title;
+            rYear.innerText = toBanglaNum(data.year) + " খ্রিস্টাব্দ • " + (data.era === 'makkan' ? 'মক্কী জীবন' : 'মাদানী জীবন');
+            rBody.innerHTML = data.story;
+            rLesson.innerText = data.lesson;
+            rSource.innerText = data.source;
+            rIcon.className = `${data.icon}`;
+            
+            // Set text color based on era
+            const colorClass = data.era === 'makkan' ? 'text-seerah-makkan' : 'text-seerah-madinan';
+            // Reset previous color classes if needed, or just handle simply via utility
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReader() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function adjustFont(change) {
+            currentFontSize += (change * 0.1);
+            if (currentFontSize < 0.8) currentFontSize = 0.8;
+            if (currentFontSize > 2) currentFontSize = 2;
+            rBody.style.fontSize = `${currentFontSize}rem`;
+        }
+
+    </script>
+</body>
+</html>
