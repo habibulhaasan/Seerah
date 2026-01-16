@@ -135,7 +135,13 @@
 </head>
 <body class="bg-slate-50 font-sans antialiased">
 
-    <!-- Loading Removed Here -->
+    <!-- লোডিং: Floating Arabic Name -->
+    <div id="loader" class="fixed inset-0 z-[100] bg-paper flex flex-col items-center justify-center transition-opacity duration-1000">
+        <div class="flex flex-col items-center justify-center scale-110">
+            <span class="text-brand-gold text-6xl md:text-8xl font-arabic drop-shadow-sm animate-float">مُحَمَّد</span>
+            <span class="text-brand-gold text-xl md:text-3xl font-arabic mt-4 animate-float-delayed">صلى الله عليه وسلم</span>
+        </div>
+    </div>
 
     <div class="mobile-line"></div>
     <div class="mobile-fill" id="progress-line"></div>
@@ -1508,7 +1514,7 @@
         const timelineFeed = document.getElementById('timeline-feed');
         const searchInput = document.getElementById('search-input');
         const filterSelect = document.getElementById('filter-select');
-        // Removed loader reference
+        const loader = document.getElementById('loader');
 
         function renderTimeline(data = seerahDB) {
             timelineFeed.innerHTML = '';
@@ -1676,8 +1682,11 @@
                 renderTimeline();
             } catch (e) {
                 console.error("Render failed", e);
-            } 
-            // Loader logic removed
+            } finally {
+                setTimeout(() => {
+                    if(loader) loader.classList.add('opacity-0', 'pointer-events-none');
+                }, 2000); // 2 seconds delay to show the animation
+            }
         });
     </script>
 </body>
